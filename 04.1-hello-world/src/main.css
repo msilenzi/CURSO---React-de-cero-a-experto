@@ -1,0 +1,8 @@
+html,
+body {
+  background-color: #21232a;
+  color: #ffffff;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.5rem;
+  padding: 70px;
+}

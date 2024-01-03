@@ -1,0 +1,35 @@
+.category-search {
+  position: relative;
+  font-size: 1.25rem;
+}
+
+.category-search input {
+  width: 100%;
+  padding: 1em;
+  font-size: 1em;
+  border-radius: 0.75rem;
+  border: none;
+  outline: 0;
+  box-shadow: 0 0.5rem 2rem -0.25rem rgba(0, 0, 0, 0.15);
+  transition: 0.2s ease-in-out all;
+}
+
+.category-search input:focus {
+  box-shadow: 0 1.5rem 3.2rem -0.4rem rgba(0, 0, 0, 0.15);
+}
+
+.category-search button {
+  --space: 0.5rem;
+  position: absolute;
+  height: calc(100% - var(--space) * 2);
+  top: var(--space);
+  right: var(--space);
+  aspect-ratio: 1;
+  border-radius: calc(0.75rem - var(--space) / 2);
+}
+
+.category-search button img {
+  height: 50%;
+  margin: auto;
+  display: block;
+}

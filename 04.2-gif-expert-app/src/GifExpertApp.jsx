@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import CategorySearch from './components/CategorySearch'
+import CategorySearch from './components/CategorySearch/CategorySearch'
 import Header from './components/Header/Header'
 
 function GifExpertApp() {

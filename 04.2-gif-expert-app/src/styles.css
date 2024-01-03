@@ -25,3 +25,14 @@ body {
   max-width: min(90%, 1000px);
   margin: 0 auto;
 }
+
+.btn {
+  outline: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.btn--primary {
+  background-color: var(--primary-500);
+  color: #fff;
+}

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import './CategorySearch.css'
+
 function CategorySearch({ addCategory }) {
   const [searchValue, setSearchValue] = useState('')
 
@@ -16,15 +18,19 @@ function CategorySearch({ addCategory }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Buscar gifs"
-        value={searchValue}
-        onChange={handleInputChange}
-      />
-      <button type="submit">Agregar</button>
-    </form>
+    <main className="container">
+      <form className="category-search" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Buscar gifs"
+          value={searchValue}
+          onChange={handleInputChange}
+        />
+        <button type="submit" className="btn btn--primary">
+          <img src="/arrow-right.svg" alt="Search icon" />
+        </button>
+      </form>
+    </main>
   )
 }
 

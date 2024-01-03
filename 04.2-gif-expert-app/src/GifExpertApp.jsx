@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import CategorySearch from './components/CategorySearch'
+import Header from './components/Header/Header'
 
 function GifExpertApp() {
   const [categories, setCategories] = useState([])
@@ -15,8 +16,7 @@ function GifExpertApp() {
 
   return (
     <>
-      <h1>GifExpertApp</h1>
-
+      <Header />
       <CategorySearch addCategory={addCategory} />
 
       <ol>

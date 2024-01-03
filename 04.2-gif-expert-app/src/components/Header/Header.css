@@ -1,0 +1,19 @@
+.header {
+  margin: 1.6rem auto 2.4rem;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  font-size: 1.75rem;
+}
+
+.header__logo img {
+  height: 2em;
+}
+
+.header__logo h1 {
+  color: var(--primary-900);
+  font-size: 1em;
+}

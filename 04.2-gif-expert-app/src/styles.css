@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 :root {
+  --primary-100: hsl(266, 13%, 68%);
   --primary-500: hsl(271, 80%, 50%);
   --primary-900: hsl(271, 92%, 10%);
 }
@@ -19,6 +20,10 @@ body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   background-color: hsl(0, 0%, 95%);
+}
+
+img {
+  max-width: 100%;
 }
 
 .container {

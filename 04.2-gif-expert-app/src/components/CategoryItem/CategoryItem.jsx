@@ -1,10 +1,25 @@
 import './CategoryItem.css'
 
-function CategoryItem({ title, url, user }) {
+function CategoryItem({ title, image, user }) {
+  console.log({ title, image, user })
+
   return (
     <li className="masonry-item">
-      <a href={url} target="_blank" rel="noopener noreferrer">
-        <img className="masonry-item__image" src={url} alt={title} />
+      <a
+        className="masonry-item__image-container"
+        href={image.url}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          className="masonry-item__image"
+          src={image.url}
+          alt={title}
+          height={parseInt(image.height, 10)}
+          width={parseInt(image.width, 10)}
+          style={{visibility: 'hidden'}}
+          onLoad={(e) => e.target.style.visibility = 'visible'}
+        />
       </a>
 
       <div
@@ -18,13 +33,15 @@ function CategoryItem({ title, url, user }) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={user.avatar_url} alt={`${user.username} avatar`} />
+            <div className="masonry-item__avatar-container">
+              <img src={user.avatar_url} alt={`${user.username} avatar`} />
+            </div>
           </a>
         )}
 
         <a
           className="masonry-item__title"
-          href={url}
+          href={image.url}
           target="_blank"
           rel="noopener noreferrer"
         >

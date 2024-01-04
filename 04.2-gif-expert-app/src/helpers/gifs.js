@@ -6,7 +6,11 @@ async function getGifs(category) {
   return data.map((img) => ({
     id: img.id,
     title: sanitizeGifTitle(img.title),
-    url: img.images.downsized_medium.url,
+    image: {
+      url: img.images.downsized_medium.url,
+      height: img.images.downsized_medium.height,
+      width: img.images.downsized_medium.width,
+    },
     user:
       img.user != null
         ? {

@@ -1,65 +1,93 @@
+import PlaceholderedImage from '../../ui/PlaceholderedImage'
 import './CategoryItem.css'
 
 function CategoryItem({ title, image, user }) {
-  console.log({ title, image, user })
-
   return (
     <li className="masonry-item">
-      <a
-        className="masonry-item__image-container"
-        href={image.url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          className="masonry-item__image"
-          src={image.url}
-          alt={title}
-          height={parseInt(image.height, 10)}
-          width={parseInt(image.width, 10)}
-          style={{visibility: 'hidden'}}
-          onLoad={(e) => e.target.style.visibility = 'visible'}
-        />
-      </a>
-
-      <div
-        className={`masonry-item__details
-          ${user != null ? 'masonry-item__details--user' : ''}`}
-      >
-        {user && (
-          <a
-            className="masonry-item__avatar"
-            href={user.profile_url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="masonry-item__avatar-container">
-              <img src={user.avatar_url} alt={`${user.username} avatar`} />
-            </div>
-          </a>
-        )}
-
-        <a
-          className="masonry-item__title"
-          href={image.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {title}
-        </a>
-
-        {user && (
-          <a
-            className="masonry-item__username"
-            href={user.profile_url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {user.username}
-          </a>
-        )}
-      </div>
+      <ItemImage title={title} image={image} />
+      <ItemDetails title={title} image={image} user={user} />
     </li>
+  )
+}
+
+function ItemImage({ title, image }) {
+  return (
+    <a
+      className="masonry-item__image"
+      href={image.url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <PlaceholderedImage
+        className="masonry-item__image"
+        placeholderColor={'red'}
+        src={image.url}
+        alt={title}
+        height={image.height}
+        width={image.width}
+      />
+    </a>
+  )
+}
+
+function ItemDetails({ title, image, user }) {
+  if (!user) {
+    return (
+      <div className="masonry-item__details masonry-item__details--no-user">
+        <ItemTitle title={title} image={image} />
+      </div>
+    )
+  }
+
+  return (
+    <div className="masonry-item__details masonry-item__details--user">
+      <ItemAvatar user={user} />
+      <ItemTitle title={title} image={image} />
+      <ItemUsername user={user} />
+    </div>
+  )
+}
+
+function ItemTitle({ title, image }) {
+  return (
+    <a
+      className="masonry-item__title"
+      href={image.url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {title}
+    </a>
+  )
+}
+
+function ItemAvatar({ user }) {
+  return (
+    <a
+      className="masonry-item__avatar"
+      href={user.profile_url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <PlaceholderedImage
+        placeholderColor={'green'}
+        src={user.avatar_url}
+        alt={`${user.username} avatar`}
+      />
+    </a>
+  )
+}
+
+function ItemUsername({ user }) {
+  return (
+    <a
+      className="masonry-item__username"
+      href={user.profile_url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {user.username}
+    </a>
   )
 }
 

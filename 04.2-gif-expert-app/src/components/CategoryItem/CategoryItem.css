@@ -36,20 +36,11 @@
   box-shadow: 0 0 3rem rgba(0, 0, 0, 0.35);
 }
 
-.masonry-item__image-container {
-  background-color: red;
-  width: 100%;
-  height: 100%;
-  display: inline-block;
+.masonry-item__image,
+.masonry-item__avatar {
   border-radius: 0.5rem;
-}
-
-.masonry-item__image {
-  object-fit: contain;
-  border-radius: 0.5rem;
-  width: 100%;
   display: block;
-  height: fit-content;
+  overflow: hidden;
 }
 
 .masonry-item__details {
@@ -65,18 +56,6 @@
 .masonry-item__avatar {
   grid-row: 1 / span 2;
   border-radius: 100%;
-}
-
-.masonry-item__avatar-container {
-  display: inline-block;
-  background-color: green;
-  border-radius: 100%;
-}
-
-.masonry-item__avatar img {
-  border-radius: 100%;
-  display: block;
-  height: fit-content;
 }
 
 .masonry-item__title {

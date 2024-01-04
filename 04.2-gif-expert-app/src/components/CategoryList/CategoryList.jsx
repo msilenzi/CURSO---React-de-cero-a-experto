@@ -1,15 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useFetchGifs } from '../../hooks/useFetchGifs'
 import CategoryItem from '../CategoryItem/CategoryItem'
-import { getGifs } from '../../helpers/gifs'
 
 import './CategoryList.css'
 
 const CategoryList = ({ category }) => {
-  const [images, setImages] = useState([])
-
-  useEffect(() => {
-    getGifs(category).then(setImages)
-  }, [category])
+  const { images } = useFetchGifs(category)
 
   return (
     <section className="gif-list">

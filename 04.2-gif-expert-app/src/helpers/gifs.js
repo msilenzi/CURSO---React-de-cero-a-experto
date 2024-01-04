@@ -1,29 +1,39 @@
-async function getGifs(category) {
-  const url = `https://api.giphy.com/v1/gifs/search?api_key=NER01h608GFGg7bvFRTw4nHmyiPHLSfJ&limit=18&q=${category}`
+const API_URL = 'https://api.giphy.com/v1/gifs/search'
+const API_KEY = 'NER01h608GFGg7bvFRTw4nHmyiPHLSfJ'
+const LIMIT = 18
+
+async function fetchGifs(category) {
+  const url = `${API_URL}?api_key=${API_KEY}&limit=${LIMIT}&q=${category}`
   const resp = await fetch(url)
   const { data } = await resp.json()
 
-  return data.map((img) => ({
+  return data.map(transformData)
+}
+
+function transformData(img) {
+  return {
     id: img.id,
     title: sanitizeGifTitle(img.title),
-    image: {
-      url: img.images.downsized_medium.url,
-      height: img.images.downsized_medium.height,
-      width: img.images.downsized_medium.width,
-    },
-    user:
-      img.user != null
-        ? {
-            username: img.user.username,
-            avatar_url: img.user.avatar_url,
-            profile_url: img.user.profile_url,
-          }
-        : null,
-  }))
+    image: extractImageData(img.images.downsized_medium),
+    user: extractUserData(img.user),
+  }
 }
 
 function sanitizeGifTitle(title) {
   return title.substring(0, title.indexOf('GIF')).trim()
 }
 
-export { getGifs }
+function extractImageData({ url, height, width }) {
+  return { url, height, width }
+}
+
+function extractUserData(user) {
+  if (!user) return null
+  return {
+    username: user.username,
+    avatar_url: user.avatar_url,
+    profile_url: user.profile_url,
+  }
+}
+
+export { fetchGifs }

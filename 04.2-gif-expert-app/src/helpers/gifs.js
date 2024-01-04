@@ -7,12 +7,14 @@ async function getGifs(category) {
     id: img.id,
     title: sanitizeGifTitle(img.title),
     url: img.images.downsized_medium.url,
-    user: img.user != null
-      ? {
-          username: img.user.username,
-          avatar_url: img.user.avatar_url,
-        }
-      : null,
+    user:
+      img.user != null
+        ? {
+            username: img.user.username,
+            avatar_url: img.user.avatar_url,
+            profile_url: img.user.profile_url,
+          }
+        : null,
   }))
 }
 

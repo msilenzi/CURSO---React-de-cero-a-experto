@@ -3,21 +3,44 @@ import './CategoryItem.css'
 const CategoryItem = ({ title, url, user }) => {
   return (
     <li className="masonry-item">
-      <img className="masonry-item__image" src={url} alt={title} />
+      <a href={url} target="_blank" rel="noopener noreferrer">
+        <img className="masonry-item__image" src={url} alt={title} />
+      </a>
+
       <div
-        className={`masonry-item__details ${
-          user != null ? 'masonry-item__details--user' : ''
-        }`}
+        className={`masonry-item__details
+          ${user != null ? 'masonry-item__details--user' : ''}`}
       >
         {user && (
-          <img
+          <a
             className="masonry-item__avatar"
-            src={user.avatar_url}
-            alt={`${user.username} avatar`}
-          />
+            href={user.profile_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={user.avatar_url} alt={`${user.username} avatar`} />
+          </a>
         )}
-        <p className="masonry-item__title">{title}</p>
-        {user && <p className="masonry-item__username">{user.username}</p>}
+
+        <a
+          className="masonry-item__title"
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {title}
+        </a>
+
+        {user && (
+          <a
+            className="masonry-item__username"
+            href={user.profile_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {user.username}
+          </a>
+        )}
       </div>
     </li>
   )

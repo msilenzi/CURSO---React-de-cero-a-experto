@@ -11,6 +11,8 @@ function CategoryItem({ title, image, user }) {
 }
 
 function ItemImage({ title, image }) {
+  const rndColor = Math.floor(Math.random() * 5) + 2
+
   return (
     <a
       className="masonry-item__image"
@@ -20,7 +22,7 @@ function ItemImage({ title, image }) {
     >
       <PlaceholderedImage
         className="masonry-item__image"
-        placeholderColor={'red'}
+        placeholderColor={`var(--primary-${rndColor}00)`}
         src={image.url}
         alt={title}
         height={image.height}
@@ -70,7 +72,7 @@ function ItemAvatar({ user }) {
       rel="noopener noreferrer"
     >
       <PlaceholderedImage
-        placeholderColor={'green'}
+        placeholderColor={'var(--primary-100)'}
         src={user.avatar_url}
         alt={`${user.username} avatar`}
       />

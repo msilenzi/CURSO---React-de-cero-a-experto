@@ -12,6 +12,11 @@
   outline: 0;
   box-shadow: 0 0.5rem 2rem -0.25rem rgba(0, 0, 0, 0.15);
   transition: 0.2s ease-in-out all;
+  color: var(--primary-900);
+}
+
+.category-search input::placeholder {
+  color: var(--primary-muted);
 }
 
 .category-search input:focus {

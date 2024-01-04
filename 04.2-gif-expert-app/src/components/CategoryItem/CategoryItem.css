@@ -67,7 +67,7 @@
 
 .masonry-item__username {
   margin: 0;
-  color: var(--primary-100);
+  color: var(--primary-muted);
   text-decoration: none;
   width: fit-content;
 }

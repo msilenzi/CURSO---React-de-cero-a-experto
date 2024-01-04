@@ -3,7 +3,7 @@ import CategoryItem from '../CategoryItem/CategoryItem'
 
 import './CategoryList.css'
 
-const CategoryList = ({ category }) => {
+function CategoryList({ category }) {
   const { images } = useFetchGifs(category)
 
   return (

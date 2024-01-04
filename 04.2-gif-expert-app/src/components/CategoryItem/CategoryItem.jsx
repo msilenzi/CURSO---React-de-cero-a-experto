@@ -1,6 +1,6 @@
 import './CategoryItem.css'
 
-const CategoryItem = ({ title, url, user }) => {
+function CategoryItem({ title, url, user }) {
   return (
     <li className="masonry-item">
       <a href={url} target="_blank" rel="noopener noreferrer">

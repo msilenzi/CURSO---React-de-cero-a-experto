@@ -5,7 +5,7 @@ function Header() {
     <header className="header">
       <div className="container">
         <div className="header__logo">
-          <img src="/gif.svg" alt="Gif icon" />
+          <img src="/gif-gradient.svg" alt="Gif icon" />
           <h1>GifExpertApp</h1>
         </div>
       </div>

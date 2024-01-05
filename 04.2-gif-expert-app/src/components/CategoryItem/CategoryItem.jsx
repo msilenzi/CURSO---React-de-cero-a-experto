@@ -1,4 +1,5 @@
 import PlaceholderedImage from '../../ui/PlaceholderedImage'
+
 import './CategoryItem.css'
 
 function CategoryItem({ title, image, user }) {
@@ -44,8 +45,10 @@ function ItemDetails({ title, image, user }) {
   return (
     <div className="masonry-item__details masonry-item__details--user">
       <ItemAvatar user={user} />
-      <ItemTitle title={title} image={image} />
-      <ItemUsername user={user} />
+      <div className="masonry-item__user">
+        <ItemTitle title={title} image={image} />
+        <ItemUsername user={user} />
+      </div>
     </div>
   )
 }
@@ -58,7 +61,7 @@ function ItemTitle({ title, image }) {
       target="_blank"
       rel="noopener noreferrer"
     >
-      {title}
+      {title || <i>Untitled</i>}
     </a>
   )
 }

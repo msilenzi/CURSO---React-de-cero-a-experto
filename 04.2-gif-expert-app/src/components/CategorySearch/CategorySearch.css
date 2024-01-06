@@ -31,17 +31,19 @@
   right: var(--space);
   aspect-ratio: 1;
   border-radius: calc(0.75rem - var(--space) / 2);
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
   background: rgb(131, 25, 230);
   background: linear-gradient(
     60deg,
     rgba(131, 25, 230, 1) 32%,
     rgba(198, 25, 230, 1) 100%
   );
+  box-shadow: 0 0.2rem 0.5rem -0.125rem var(--primary-400),
+    inset 0 0 0.15rem var(--primary-100);
 }
 
 .category-search button img {
   height: 50%;
   margin: auto;
   display: block;
+  filter: drop-shadow(0 0.05rem 0.075rem rgba(235, 235, 235, 0.5));
 }

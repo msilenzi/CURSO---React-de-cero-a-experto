@@ -24,7 +24,7 @@ function sanitizeGifTitle(title) {
 }
 
 function extractImageData({ url, height, width }) {
-  return { url, height, width }
+  return { url, height: parseInt(height, 10), width: parseInt(width, 10) }
 }
 
 function extractUserData(user) {

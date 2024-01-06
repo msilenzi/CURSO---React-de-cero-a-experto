@@ -39,9 +39,9 @@ function PlaceholderedImage({
 PlaceholderedImage.propTypes = {
   placeholderColor: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
-  alt: PropTypes.string,
-  height: PropTypes.string,
-  width: PropTypes.string,
+  alt: PropTypes.string.isRequired,
+  height: PropTypes.number,
+  width: PropTypes.number,
 }
 
 export default PlaceholderedImage

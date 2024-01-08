@@ -1,1 +1,6 @@
-{}
+{
+  "compilerOptions": {
+    "module": "ESNext"
+  },
+  "exclude": ["node_modules"],
+}

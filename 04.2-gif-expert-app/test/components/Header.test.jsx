@@ -6,7 +6,6 @@ describe('Pruebas en <Header />', () => {
   test('debe coincidir con el snapshot', () => {
     const { container } = render(<Header />)
     expect(container).toMatchSnapshot()
-    expect(container).toHaveTextContent('GifExpertApp')
   })
 
   test('debe contener el título "GifExpertApp"', () => {

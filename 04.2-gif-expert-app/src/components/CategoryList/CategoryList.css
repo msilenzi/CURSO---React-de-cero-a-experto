@@ -6,3 +6,8 @@
   font-size: 2.25rem;
   color: var(--primary-900);
 }
+
+.gif-list__loading {
+  display: flex;
+  justify-content: center;
+}

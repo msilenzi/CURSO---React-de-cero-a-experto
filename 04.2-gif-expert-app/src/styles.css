@@ -30,6 +30,16 @@ body {
   background-color: hsl(0, 0%, 95%);
 }
 
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root > * {
+  width: 100%;
+}
+
 img {
   max-width: 100%;
 }

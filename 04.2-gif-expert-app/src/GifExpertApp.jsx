@@ -2,6 +2,7 @@ import { useState } from 'react'
 import CategorySearch from './components/CategorySearch/CategorySearch'
 import Header from './components/Header/Header'
 import CategoryList from './components/CategoryList/CategoryList'
+import Footer from './components/Footer/Footer'
 
 function GifExpertApp() {
   const [categories, setCategories] = useState([])
@@ -19,10 +20,10 @@ function GifExpertApp() {
     <>
       <Header />
       <CategorySearch addCategory={addCategory} />
-
       {categories.map((category) => (
         <CategoryList category={category} key={category} />
       ))}
+      <Footer />
     </>
   )
 }

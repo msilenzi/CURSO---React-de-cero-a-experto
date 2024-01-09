@@ -5,8 +5,8 @@ import CategoryItem from '../CategoryItem/CategoryItem'
 
 import './CategoryList.css'
 
-function CategoryList({ category }) {
-  const { images, isLoading } = useFetchGifs(category)
+function CategoryList({ category, fetcher }) {
+  const { images, isLoading } = useFetchGifs(fetcher)
 
   return (
     <section className="gif-list">
@@ -44,6 +44,7 @@ function Loading() {
 
 CategoryList.propTypes = {
   category: PropTypes.string.isRequired,
+  fetcher: PropTypes.func.isRequired,
 }
 
 List.propTypes = {

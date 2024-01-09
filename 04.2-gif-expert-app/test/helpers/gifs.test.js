@@ -1,9 +1,8 @@
-import { fetchGifs } from '../../src/helpers/gifs'
+import { fetchGifsByCategory } from '../../src/helpers/gifs'
 
-describe('Pruebas en fetchGifs', () => {
+describe('Pruebas en fetchGifsByCategory', () => {
   test('debe retornar un arreglo de gifs', async () => {
-    const gifs = await fetchGifs('Pokemon')
-
+    const gifs = await fetchGifsByCategory('Pokemon')
     expect(gifs).toBeArray()
     expect(gifs.length).toBeGreaterThan(0)
     expect(gifs[0]).toEqual({

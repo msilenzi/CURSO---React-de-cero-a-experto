@@ -1,13 +1,21 @@
-const API_URL = 'https://api.giphy.com/v1/gifs/search'
+const API_URL = 'https://api.giphy.com/v1/gifs'
 const API_KEY = 'NER01h608GFGg7bvFRTw4nHmyiPHLSfJ'
 const LIMIT = 18
 
-async function fetchGifs(category) {
-  const url = `${API_URL}?api_key=${API_KEY}&limit=${LIMIT}&q=${category}`
+async function fetchGifs(url) {
   const resp = await fetch(url)
   const { data } = await resp.json()
-
   return data.map(transformData)
+}
+
+async function fetchGifsByCategory(category) {
+  const url = `${API_URL}/search?api_key=${API_KEY}&limit=${LIMIT}&q=${category}`
+  return await fetchGifs(url)
+}
+
+async function fetchGifsTrending() {
+  const url = `${API_URL}/trending?api_key=${API_KEY}&limit=${LIMIT}`
+  return await fetchGifs(url)
 }
 
 function transformData(img) {
@@ -36,4 +44,4 @@ function extractUserData(user) {
   }
 }
 
-export { fetchGifs }
+export { fetchGifsByCategory, fetchGifsTrending }

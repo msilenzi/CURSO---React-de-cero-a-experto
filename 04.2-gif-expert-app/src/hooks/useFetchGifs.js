@@ -1,18 +1,17 @@
 import { useState, useEffect } from 'react'
-import { fetchGifs } from '../helpers/gifs'
 
-function useFetchGifs(category) {
+function useFetchGifs(fetcher) {
   const [images, setImages] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    ;(async () => {
-      const newImages = await fetchGifs(category)
+    (async () => {
+      const newImages = await fetcher()
       console.log('loaded')
       setImages(newImages)
       setIsLoading(false)
     })()
-  }, [category])
+  }, [fetcher])
 
   return { images, isLoading }
 }

@@ -1,6 +1,6 @@
 import { fetchGifsByCategory, fetchGifsTrending } from '../../src/helpers/gifs'
 
-function testFetchGifs(gifs) {
+function assertFetchGifs(gifs) {
   expect(gifs).toBeArray()
   expect(gifs.length).toBeGreaterThan(0)
   expect(gifs[0]).toEqual({
@@ -24,14 +24,16 @@ function testFetchGifs(gifs) {
 
 describe('Pruebas en fetchGifsByCategory', () => {
   test('debe retornar un arreglo de gifs', async () => {
+    expect.hasAssertions()
     const gifs = await fetchGifsByCategory('Pokemon')
-    testFetchGifs(gifs)
+    assertFetchGifs(gifs)
   })
 })
 
 describe('Pruebas en fetchGifsTrending', () => {
   test('debe retornar un arreglo de gifs', async () => {
+    expect.hasAssertions()
     const gifs = await fetchGifsTrending()
-    testFetchGifs(gifs)
+    assertFetchGifs(gifs)
   })
 })

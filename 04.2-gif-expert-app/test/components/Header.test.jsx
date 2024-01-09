@@ -12,6 +12,6 @@ describe('Pruebas en <Header />', () => {
   test('debe contener el título "GifExpertApp"', () => {
     render(<Header />)
     const h1 = screen.getByRole('heading', { level: 1 })
-    expect(h1.innerHTML).toStrictEqual('GifExpertApp')
+    expect(h1.innerHTML).toBe('GifExpertApp')
   })
 })

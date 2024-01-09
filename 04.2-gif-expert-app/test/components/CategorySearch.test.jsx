@@ -20,7 +20,7 @@ describe('Pruebas en <CategorySearch />', () => {
     fireEvent.input(input, { target: { value: inputValue } })
     fireEvent.submit(form)
 
-    expect(input.value).toStrictEqual('')
+    expect(input.value).toBe('')
     expect(addCategory).toHaveBeenCalledExactlyOnceWith(inputValue.trim())
   })
 

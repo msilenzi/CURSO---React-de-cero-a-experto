@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useFetchGifs } from '../../hooks/useFetchGifs'
 import CategoryItem from '../CategoryItem/CategoryItem'
 
@@ -18,6 +19,10 @@ function CategoryList({ category }) {
       </div>
     </section>
   )
+}
+
+CategoryList.propTypes = {
+  category: PropTypes.string.isRequired,
 }
 
 export default CategoryList

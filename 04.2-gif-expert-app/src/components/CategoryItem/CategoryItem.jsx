@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import PlaceholderedImage from '../../ui/PlaceholderedImage'
 
 import './CategoryItem.css'
@@ -94,6 +95,48 @@ function ItemUsername({ user }) {
       {user.username}
     </a>
   )
+}
+
+const imageType = PropTypes.shape({
+  url: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+})
+
+const userType = PropTypes.shape({
+  profile_url: PropTypes.string.isRequired,
+  avatar_url: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+})
+
+CategoryItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  image: imageType.isRequired,
+  user: userType,
+}
+
+ItemImage.propTypes = {
+  title: PropTypes.string.isRequired,
+  image: imageType.isRequired,
+}
+
+ItemDetails.propTypes = {
+  title: PropTypes.string.isRequired,
+  image: imageType.isRequired,
+  user: userType,
+}
+
+ItemTitle.propTypes = {
+  title: PropTypes.string,
+  image: imageType.isRequired,
+}
+
+ItemAvatar.propTypes = {
+  user: userType.isRequired,
+}
+
+ItemUsername.propTypes = {
+  user: userType.isRequired,
 }
 
 export default CategoryItem

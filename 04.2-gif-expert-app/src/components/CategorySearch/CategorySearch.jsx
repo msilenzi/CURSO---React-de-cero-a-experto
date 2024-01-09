@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 
 import './CategorySearch.css'
@@ -9,7 +10,7 @@ function CategorySearch({ addCategory }) {
     event.preventDefault()
     const trimmedSearch = searchValue.trim()
     if (trimmedSearch <= 1) return
-    addCategory(searchValue)
+    addCategory(trimmedSearch)
     setSearchValue('')
   }
 
@@ -19,7 +20,11 @@ function CategorySearch({ addCategory }) {
 
   return (
     <main className="container">
-      <form className="category-search" onSubmit={handleSubmit}>
+      <form
+        className="category-search"
+        onSubmit={handleSubmit}
+        aria-label="form"
+      >
         <input
           type="text"
           placeholder="Buscar gifs"
@@ -32,6 +37,10 @@ function CategorySearch({ addCategory }) {
       </form>
     </main>
   )
+}
+
+CategorySearch.propTypes = {
+  addCategory: PropTypes.func.isRequired,
 }
 
 export default CategorySearch

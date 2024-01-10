@@ -13,6 +13,7 @@ exports[`Pruebas en <CategoryItem /> debe coincidir con el snapshot: con usuario
     >
       <div
         class="placeholdered-image"
+        data-testid="PlaceholderedImage"
       >
         <img
           alt="Pokemon"
@@ -35,6 +36,7 @@ exports[`Pruebas en <CategoryItem /> debe coincidir con el snapshot: con usuario
       >
         <div
           class="placeholdered-image"
+          data-testid="PlaceholderedImage"
         >
           <img
             alt="Pokemon Company avatar"
@@ -81,6 +83,7 @@ exports[`Pruebas en <CategoryItem /> debe coincidir con el snapshot: sin usuario
     >
       <div
         class="placeholdered-image"
+        data-testid="PlaceholderedImage"
       >
         <img
           alt="Pokemon"

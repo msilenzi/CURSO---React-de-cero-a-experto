@@ -7,7 +7,6 @@ function useFetchGifs(fetcher) {
   useEffect(() => {
     (async () => {
       const newImages = await fetcher()
-      console.log('loaded')
       setImages(newImages)
       setIsLoading(false)
     })()

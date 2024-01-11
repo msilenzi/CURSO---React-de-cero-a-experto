@@ -10,15 +10,15 @@ describe('Pruebas en <CategorySearch />', () => {
     expect(input.value).toStrictEqual(inputValue)
   })
 
-  test('debe enviar el formulario', () => {
+  test('debe enviar el formulario al presionar el boton', () => {
     const inputValue = '  Pokemon  '
     const addCategory = jest.fn()
 
     render(<CategorySearch addCategory={addCategory} />)
     const input = screen.getByRole('textbox')
-    const form = screen.getByRole('form')
+    const button = screen.getByRole('button')
     fireEvent.input(input, { target: { value: inputValue } })
-    fireEvent.submit(form)
+    fireEvent.click(button)
 
     expect(input.value).toBe('')
     expect(addCategory).toHaveBeenCalledExactlyOnceWith(inputValue.trim())

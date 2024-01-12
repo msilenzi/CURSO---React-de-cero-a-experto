@@ -30,7 +30,7 @@ function List({ images }) {
 
 function Loading() {
   return (
-    <div className="gif-list__loading">
+    <div className="gif-list__loading" aria-label="loading">
       <BarLoader
         color="#8319e6" // --primary-500
         height="0.25rem"

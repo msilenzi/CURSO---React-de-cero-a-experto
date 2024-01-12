@@ -31,12 +31,12 @@ describe('Pruebas en <CategoryItem />', () => {
 
   test('debe mostrar el título untitled', () => {
     render(<CategoryItem title="" image={mockImage} user={mockUser} />)
-    screen.getByText('Untitled')
+    expect(screen.getByText('Untitled')).toBeInTheDocument()
   })
 
   test('debe mostrar la información del usuario', () => {
     render(<CategoryItem title={mockTitle} image={mockImage} user={mockUser} />)
-    screen.getByText(mockUser.username)
+    expect(screen.getByText(mockUser.username)).toBeInTheDocument()
   })
 
   test('debe mostrar la información imagen correctamente', () => {

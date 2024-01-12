@@ -21,6 +21,7 @@ function PlaceholderedImage({
   return (
     <div
       className="placeholdered-image"
+      data-testid="PlaceholderedImage"
       style={{ backgroundColor: isLoaded ? 'transparent' : placeholderColor }}
     >
       <img

@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en <CategoryItem /> debe coincidir con el snapshot: con usuario 1`] = `
+<div>
+  <li
+    class="masonry-item"
+  >
+    <a
+      class="masonry-item__image"
+      href="https://giphy.com/images/pokeom.gif"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <div
+        class="placeholdered-image"
+        data-testid="PlaceholderedImage"
+      >
+        <img
+          alt="Pokemon"
+          class="masonry-item__image"
+          height="800"
+          src="https://giphy.com/images/pokeom.gif"
+          style="visibility: hidden;"
+          width="600"
+        />
+      </div>
+    </a>
+    <div
+      class="masonry-item__details masonry-item__details--user"
+    >
+      <a
+        class="masonry-item__avatar"
+        href="https://giphy.com/profiles/pokemon"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <div
+          class="placeholdered-image"
+          data-testid="PlaceholderedImage"
+        >
+          <img
+            alt="Pokemon Company avatar"
+            src="https://giphy.com/avatar/pokemon"
+            style="visibility: hidden;"
+          />
+        </div>
+      </a>
+      <div
+        class="masonry-item__user"
+      >
+        <a
+          class="masonry-item__title"
+          href="https://giphy.com/images/pokeom.gif"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Pokemon
+        </a>
+        <a
+          class="masonry-item__username"
+          href="https://giphy.com/profiles/pokemon"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Pokemon Company
+        </a>
+      </div>
+    </div>
+  </li>
+</div>
+`;
+
+exports[`Pruebas en <CategoryItem /> debe coincidir con el snapshot: sin usuario 1`] = `
+<div>
+  <li
+    class="masonry-item"
+  >
+    <a
+      class="masonry-item__image"
+      href="https://giphy.com/images/pokeom.gif"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      <div
+        class="placeholdered-image"
+        data-testid="PlaceholderedImage"
+      >
+        <img
+          alt="Pokemon"
+          class="masonry-item__image"
+          height="800"
+          src="https://giphy.com/images/pokeom.gif"
+          style="visibility: hidden;"
+          width="600"
+        />
+      </div>
+    </a>
+    <div
+      class="masonry-item__details masonry-item__details--no-user"
+    >
+      <a
+        class="masonry-item__title"
+        href="https://giphy.com/images/pokeom.gif"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Pokemon
+      </a>
+    </div>
+  </li>
+</div>
+`;

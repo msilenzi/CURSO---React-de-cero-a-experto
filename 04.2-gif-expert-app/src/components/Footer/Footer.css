@@ -1,0 +1,19 @@
+.footer {
+  text-align: center;
+  color: var(--primary-900);
+  margin-top: auto;
+}
+
+.footer p {
+  margin: 6.25rem 0 3.125rem;
+}
+
+.footer svg {
+  height: 1em;
+  color: var(--primary-500);
+  margin-bottom: -0.1em;
+}
+
+.footer a {
+  color: inherit;
+}

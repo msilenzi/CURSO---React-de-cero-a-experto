@@ -1,0 +1,11 @@
+.placeholdered-image {
+  display: block;
+  width: 100%;
+}
+
+.placeholdered-image img {
+  display: block;
+  width: 100%;
+  height: fit-content;
+  object-fit: contain;
+}

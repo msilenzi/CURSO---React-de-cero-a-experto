@@ -4,7 +4,7 @@ import HelloWorldApp from './HelloWorldApp'
 import FirstApp from './FirstApp'
 import CounterApp from './CounterApp'
 
-import 'src/main.css'
+import './main.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

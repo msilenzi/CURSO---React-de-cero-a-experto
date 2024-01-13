@@ -8,6 +8,7 @@ import FormWithHook from '02-useEffect/FormWithHook'
 import MultipleHooks from '03-examples/MultipleHooks'
 import FocusScreen from '04-useRef/FocusScreen'
 import Layout from '05-useLayoutEffect/Layout'
+import Memorize from '06-memos/Memorize'
 
 const mainComponents = {
   CounterApp,
@@ -17,6 +18,7 @@ const mainComponents = {
   MultipleHooks,
   FocusScreen,
   Layout,
+  Memorize
 }
 
 function HooksApp() {

@@ -3,6 +3,7 @@ import CounterWithHook from '01-useState/CounterWithHook'
 import SimpleForm from '02-useEffect/SimpleForm'
 import FormWithHook from '02-useEffect/FormWithHook'
 import MultipleHooks from '03-examples/MultipleHooks'
+import FocusScreen from '04-useRef/FocusScreen'
 
 function HooksApp() {
   return (
@@ -12,7 +13,8 @@ function HooksApp() {
         {/* <CounterWithHook /> */}
         {/* <SimpleForm /> */}
         {/* <FormWithHook /> */}
-        <MultipleHooks />
+        {/* <MultipleHooks /> */}
+        <FocusScreen />
       </div>
     </div>
   )

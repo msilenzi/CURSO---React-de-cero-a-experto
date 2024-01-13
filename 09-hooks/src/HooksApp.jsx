@@ -1,7 +1,8 @@
 import CounterApp from '01-useState/CounterApp'
 import CounterWithHook from '01-useState/CounterWithHook'
-import FormWithHook from '02-useEffect/FormWithHook'
 import SimpleForm from '02-useEffect/SimpleForm'
+import FormWithHook from '02-useEffect/FormWithHook'
+import MultipleHooks from '03-examples/MultipleHooks'
 
 function HooksApp() {
   return (
@@ -10,7 +11,8 @@ function HooksApp() {
         {/* <CounterApp /> */}
         {/* <CounterWithHook /> */}
         {/* <SimpleForm /> */}
-        <FormWithHook />
+        {/* <FormWithHook /> */}
+        <MultipleHooks />
       </div>
     </div>
   )

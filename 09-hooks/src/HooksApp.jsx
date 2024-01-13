@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Navbar from 'Navbar'
+import Navbar from '@UI/Navbar'
 
 import CounterApp from '01-useState/CounterApp'
 import CounterWithHook from '01-useState/CounterWithHook'
@@ -7,6 +7,7 @@ import SimpleForm from '02-useEffect/SimpleForm'
 import FormWithHook from '02-useEffect/FormWithHook'
 import MultipleHooks from '03-examples/MultipleHooks'
 import FocusScreen from '04-useRef/FocusScreen'
+import Layout from '05-useLayoutEffect/Layout'
 
 const mainComponents = {
   CounterApp,
@@ -15,6 +16,7 @@ const mainComponents = {
   FormWithHook,
   MultipleHooks,
   FocusScreen,
+  Layout,
 }
 
 function HooksApp() {

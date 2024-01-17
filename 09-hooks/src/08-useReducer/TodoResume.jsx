@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { todoType } from './todoTypes'
 
 function TodoResume({ todos }) {
   const completedTodos = todos.filter(({ done }) => done)
@@ -14,13 +15,7 @@ function TodoResume({ todos }) {
 }
 
 TodoResume.propTypes = {
-  todos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      description: PropTypes.string.isRequired,
-      done: PropTypes.bool.isRequired,
-    }).isRequired
-  ).isRequired,
+  todos: PropTypes.arrayOf(todoType.isRequired).isRequired,
 }
 
 export default TodoResume

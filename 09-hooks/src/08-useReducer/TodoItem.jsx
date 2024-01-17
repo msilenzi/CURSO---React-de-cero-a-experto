@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
+import { todoType } from './todoTypes'
 
-function TodoItem({ id, description, done }) {
+function TodoItem({ todo: { id, description, done } }) {
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center p-2">
       {description}
@@ -10,9 +10,7 @@ function TodoItem({ id, description, done }) {
 }
 
 TodoItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  done: PropTypes.bool.isRequired,
+  todo: todoType.isRequired,
 }
 
 export default TodoItem

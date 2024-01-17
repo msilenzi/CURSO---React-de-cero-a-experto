@@ -23,7 +23,7 @@ function SimpleForm() {
         <input
           type="text"
           name="username"
-          className="form-control"
+          className="form-control form-dark"
           placeholder="Username"
           value={formState.username}
           onChange={handleInputChange}
@@ -38,7 +38,7 @@ function SimpleForm() {
         <input
           type="email"
           name="email"
-          className="form-control"
+          className="form-control form-dark"
           placeholder="Email"
           value={formState.email}
           onChange={handleInputChange}

@@ -14,7 +14,7 @@ function FocusScreen() {
       <input
         ref={inputRef}
         type="text"
-        className="form-control mb-4"
+        className="form-control form-dark mb-4"
         placeholder="Ingrese su nombre"
       />
       <button className="btn btn-primary d-block ms-auto" onClick={handleClick}>

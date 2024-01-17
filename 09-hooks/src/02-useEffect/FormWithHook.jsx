@@ -22,7 +22,7 @@ function FormWithHook() {
             type="text"
             id="username"
             name="username"
-            className="form-control"
+            className="form-control form-dark"
             placeholder="Username"
             value={formState.username}
             onChange={handleInputChange}
@@ -37,7 +37,7 @@ function FormWithHook() {
             type="email"
             id="email"
             name="email"
-            className="form-control"
+            className="form-control form-dark"
             placeholder="Email"
             value={formState.email}
             onChange={handleInputChange}
@@ -52,7 +52,7 @@ function FormWithHook() {
             type="password"
             id="password"
             name="password"
-            className="form-control"
+            className="form-control form-dark"
             placeholder="Password"
             value={formState.password}
             onChange={handleInputChange}
@@ -64,7 +64,7 @@ function FormWithHook() {
             Select a number
           </label>
           <select
-            className="form-select"
+            className="form-select form-dark"
             id="select"
             name="select"
             onChange={handleInputChange}

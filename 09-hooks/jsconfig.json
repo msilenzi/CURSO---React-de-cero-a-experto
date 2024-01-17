@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@Components": ["components/index"],
+      "@Components/*": ["components/*"],
+      "@Hooks": ["hooks/index"],
+      "@Hooks/*": ["hooks/*"],
+      "@UI": ["ui/index"],
+      "@UI/*": ["ui/*"],
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "public"]
+}

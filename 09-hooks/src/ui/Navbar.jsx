@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 function Navbar({ selectedValue, setSelectedValue, mainComponents }) {
   return (
-    <nav className="navbar navbar-expand-xl shadow-sm bg-white">
+    <nav className="navbar navbar-expand-xxl fixed-top shadow-sm bg-white">
       <div className="container-fluid">
         <span className="navbar-brand">
           <span className='bg-dark text-white p-1 rounded-2'>Hooks</span>{' '}

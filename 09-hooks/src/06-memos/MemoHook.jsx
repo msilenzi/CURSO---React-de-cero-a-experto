@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useCounter } from '@Hooks'
 import Bold from './Bold'
+import SectionTitle from '@UI/SectionTitle'
 
 function heavyStuff(iterationNumber) {
   for (let i = 0; i < iterationNumber; i++) {
@@ -18,9 +19,7 @@ function MemoHook() {
 
   return (
     <div style={{ width: '320px' }}>
-      <h3 className="mb-4">
-        MemoHook
-      </h3>
+      <SectionTitle text='MemoHook' />
 
       <h4 className="mb-4">{memorizedValue}</h4>
 

@@ -1,6 +1,7 @@
 import { useCounter, useFetch } from '@Hooks'
 import Quotes from './Quotes'
 import Counter from './Counter'
+import SectionTitle from '@UI/SectionTitle'
 
 function MultipleHooks() {
   const { counter, increment, decrement, reset } = useCounter(1, {
@@ -14,7 +15,7 @@ function MultipleHooks() {
 
   return (
     <div style={{ width: '460px' }}>
-      <h3 className="mb-4">Beraking Bad Quotes</h3>
+      <SectionTitle text="Breaking Bad Quotes" />
       <div className="mb-5">
         <Counter
           counter={counter}

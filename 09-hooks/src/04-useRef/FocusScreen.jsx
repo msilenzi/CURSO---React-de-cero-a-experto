@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import SectionTitle from '@UI/SectionTitle'
 
 function FocusScreen() {
   const inputRef = useRef()
@@ -9,7 +10,7 @@ function FocusScreen() {
 
   return (
     <div style={{ width: '320px' }}>
-      <h3 className="mb-4">FocusScreen</h3>
+      <SectionTitle text='FocusScreen' />
       <input
         ref={inputRef}
         type="text"

@@ -1,4 +1,5 @@
 import { useForm } from '@Hooks'
+import SectionTitle from '@UI/SectionTitle'
 
 function FormWithHook() {
   const { formState, handleInputChange, handleReset } = useForm({
@@ -10,9 +11,9 @@ function FormWithHook() {
 
   return (
     <div style={{ width: '360px' }}>
-      <h3 className="mb-4">Form with hook</h3>
+      <SectionTitle text="Form with hook" />
 
-      <form onReset={handleReset} >
+      <form onReset={handleReset}>
         <div className="mb-3">
           <label htmlFor="username" className="form-label">
             Username
@@ -58,7 +59,7 @@ function FormWithHook() {
           />
         </div>
 
-        <div className='mb-4'>
+        <div className="mb-4">
           <label htmlFor="select" className="form-label">
             Select a number
           </label>
@@ -74,7 +75,9 @@ function FormWithHook() {
             <option value="3">Three</option>
           </select>
         </div>
-        <button type="reset" className='btn btn-outline-danger'>Reset</button>
+        <button type="reset" className="btn btn-outline-danger">
+          Reset
+        </button>
       </form>
     </div>
   )

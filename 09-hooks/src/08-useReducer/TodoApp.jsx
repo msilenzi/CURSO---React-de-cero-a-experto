@@ -7,8 +7,16 @@ import TodoResume from './TodoResume'
 
 const initialState = []
 
+function init() {
+  return JSON.parse(localStorage.getItem('todos')) ?? []
+}
+
 function TodoApp() {
-  const [todos, dispatch] = useReducer(todoReducer, initialState)
+  const [todos, dispatch] = useReducer(todoReducer, initialState, init)
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos])
 
   function handleAdd(todo) {
     dispatch({ type: 'add', payload: todo })

@@ -26,12 +26,20 @@ function TodoApp() {
     dispatch({ type: 'delete', payload: id })
   }
 
+  function handleToggle(id) {
+    dispatch({ type: 'toggle', payload: id })
+  }
+
   return (
     <div style={{ minWidth: '420px' }}>
       <SectionTitle text="TodoApp" />
       <TodoResume todos={todos} />
       <TodoAdd handleAdd={handleAdd} />
-      <TodoList todos={todos} handleDelete={handleDelete} />
+      <TodoList
+        todos={todos}
+        handleDelete={handleDelete}
+        handleToggle={handleToggle}
+      />
     </div>
   )
 }

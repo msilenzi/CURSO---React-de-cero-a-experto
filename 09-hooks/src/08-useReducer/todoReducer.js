@@ -4,6 +4,11 @@ function todoReducer(initialState, action) {
       return [...initialState, action.payload]
     case 'delete':
       return initialState.filter(({ id }) => id !== action.payload)
+    case 'toggle':
+      return initialState.map((todo) => {
+        if (todo.id !== action.payload) return todo
+        return { ...todo, done: !todo.done }
+      })
     default:
       return initialState
   }

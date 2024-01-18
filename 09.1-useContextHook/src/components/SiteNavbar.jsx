@@ -5,7 +5,7 @@ import { Link, NavLink } from 'react-router-dom'
 
 function SiteNavbar() {
   return (
-    <Navbar expand="sm" bg="dark" data-bs-theme="dark">
+    <Navbar expand="sm" bg="dark" data-bs-theme="dark" className="mb-4">
       <Container>
         <Navbar.Brand as={Link} to="/">
           useContextHook

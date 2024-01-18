@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@Components": ["components/index"],
+      "@Components/*": ["components/*"],
+
+      "@Context": ["context/index"],
+      "@Context/*": ["context/*"],
+
+      "@Hooks/*": ["hooks/*"],
+      "@Hooks": ["hooks/index"],
+
+      "@Pages": ["pages/index"],
+      "@Pages/*": ["pages/*"],
+
+      "@Utils": ["utils/index"],
+      "@Utils/*": ["utils/*"],
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "public"]
+}

@@ -37,6 +37,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "jest-extended": "^4.0.2",
     "prop-types": "^15.8.1",
+    "ts-jest": "^29.1.1",
     "vite": "^5.0.8",
     "vite-tsconfig-paths": "^3.6.0"
   }

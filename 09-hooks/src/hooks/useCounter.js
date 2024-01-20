@@ -1,16 +1,21 @@
 import { useState } from 'react'
 
-function useCounter(initialValue, options = { min: -Infinity, max: Infinity }) {
-  const [counter, setCounter] = useState(initialValue)
+function useCounter(initialValue, options = {}) {
+  const { min = -Infinity, max = Infinity } = options
+  const initialCounter = Math.max(min, Math.min(initialValue, max))
+
+  const [counter, setCounter] = useState(initialCounter)
 
   const increment = () => {
-    if (counter === options.max) return
-    setCounter(counter + 1)
+    setCounter((prevCounter) =>
+      prevCounter === options.max ? prevCounter : prevCounter + 1
+    )
   }
 
   const decrement = () => {
-    if (counter === options.min) return
-    setCounter(counter - 1)
+    setCounter((prevCounter) =>
+      prevCounter === options.min ? prevCounter : prevCounter - 1
+    )
   }
 
   const reset = () => {

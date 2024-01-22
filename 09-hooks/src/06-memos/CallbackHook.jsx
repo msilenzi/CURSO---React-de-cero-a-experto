@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import ShowIncrement from './ShowIncrement'
+import SectionTitle from '@UI/SectionTitle'
 
 function CallbackHook() {
   const [counter, setCounter] = useState(0)
@@ -13,10 +14,8 @@ function CallbackHook() {
   }, [])
 
   return (
-    <div>
-      <h3 className="mb-4" style={{ width: '320px' }}>
-        CallbackHook
-      </h3>
+    <div style={{ width: '320px' }}>
+      <SectionTitle text="CallbackHook" />
       <p className="m-0 fs-4 mb-4">
         Counter: <b>{counter}</b>
       </p>

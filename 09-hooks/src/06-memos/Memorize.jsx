@@ -1,6 +1,7 @@
+import { useState } from 'react'
 import { useCounter } from '@Hooks'
 import Bold from './Bold'
-import { useState } from 'react'
+import SectionTitle from '@UI/SectionTitle'
 
 function Memorize() {
   const { counter, increment } = useCounter(0)
@@ -8,9 +9,7 @@ function Memorize() {
 
   return (
     <div style={{ width: '320px' }}>
-      <h3 className="mb-4">
-        Memorize
-      </h3>
+      <SectionTitle text='Memorize' />
 
       <div className="d-flex justify-content-between align-items-center mb-4">
         <p className="m-0 fs-4">

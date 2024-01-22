@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import Hijo from './Hijo'
+import SectionTitle from '@UI/SectionTitle'
 
 
 function Padre() {
@@ -12,7 +13,7 @@ function Padre() {
 
   return (
     <div>
-      <h3 className="mb-4">Padre</h3>
+      <SectionTitle text='Padre' />
       <p className="fs-4 mb-4">
         Total: <b>{valor}</b>
       </p>

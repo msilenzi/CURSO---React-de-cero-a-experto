@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import Counter from '03-examples/Counter'
 import Quotes from '03-examples/Quotes'
 import { useCounter, useFetch } from '@Hooks'
+import SectionTitle from '@UI/SectionTitle'
 
 function Layout() {
   const { counter, increment, decrement, reset } = useCounter(1, {
@@ -23,7 +24,7 @@ function Layout() {
 
   return (
     <div style={{ width: '460px' }}>
-      <h3 className="mb-4">Beraking Bad Quotes</h3>
+      <SectionTitle text='Braking Bad Quotes' />
       <div className="mb-4">
         <Counter
           counter={counter}

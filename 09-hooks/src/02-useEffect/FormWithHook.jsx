@@ -1,4 +1,5 @@
 import { useForm } from '@Hooks'
+import SectionTitle from '@UI/SectionTitle'
 
 function FormWithHook() {
   const { formState, handleInputChange, handleReset } = useForm({
@@ -10,9 +11,9 @@ function FormWithHook() {
 
   return (
     <div style={{ width: '360px' }}>
-      <h3 className="mb-4">Form with hook</h3>
+      <SectionTitle text="Form with hook" />
 
-      <form onReset={handleReset} >
+      <form onReset={handleReset}>
         <div className="mb-3">
           <label htmlFor="username" className="form-label">
             Username
@@ -21,7 +22,7 @@ function FormWithHook() {
             type="text"
             id="username"
             name="username"
-            className="form-control"
+            className="form-control form-dark"
             placeholder="Username"
             value={formState.username}
             onChange={handleInputChange}
@@ -36,7 +37,7 @@ function FormWithHook() {
             type="email"
             id="email"
             name="email"
-            className="form-control"
+            className="form-control form-dark"
             placeholder="Email"
             value={formState.email}
             onChange={handleInputChange}
@@ -51,19 +52,19 @@ function FormWithHook() {
             type="password"
             id="password"
             name="password"
-            className="form-control"
+            className="form-control form-dark"
             placeholder="Password"
             value={formState.password}
             onChange={handleInputChange}
           />
         </div>
 
-        <div className='mb-4'>
+        <div className="mb-4">
           <label htmlFor="select" className="form-label">
             Select a number
           </label>
           <select
-            className="form-select"
+            className="form-select form-dark"
             id="select"
             name="select"
             onChange={handleInputChange}
@@ -74,7 +75,9 @@ function FormWithHook() {
             <option value="3">Three</option>
           </select>
         </div>
-        <button type="reset" className='btn btn-outline-danger'>Reset</button>
+        <button type="reset" className="btn btn-outline-danger">
+          Reset
+        </button>
       </form>
     </div>
   )

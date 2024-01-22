@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Message from './Message'
+import SectionTitle from '@UI/SectionTitle'
 
 function SimpleForm() {
   const [formState, setFormState] = useState({
@@ -13,7 +14,7 @@ function SimpleForm() {
 
   return (
     <div style={{ width: '360px' }}>
-      <h3 className="mb-4">Simple Form</h3>
+      <SectionTitle text="Simple Form" />
 
       <div className="mb-3">
         <label htmlFor="username" className="form-label">
@@ -22,12 +23,12 @@ function SimpleForm() {
         <input
           type="text"
           name="username"
-          className="form-control"
+          className="form-control form-dark"
           placeholder="Username"
           value={formState.username}
           onChange={handleInputChange}
         />
-        {(formState.username === '') && <Message />}
+        {formState.username === '' && <Message />}
       </div>
 
       <div>
@@ -37,7 +38,7 @@ function SimpleForm() {
         <input
           type="email"
           name="email"
-          className="form-control"
+          className="form-control form-dark"
           placeholder="Email"
           value={formState.email}
           onChange={handleInputChange}

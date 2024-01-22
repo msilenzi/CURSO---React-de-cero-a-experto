@@ -1,14 +1,28 @@
 import PropTypes from 'prop-types'
+import { useRef } from 'react'
 
 function Navbar({ selectedValue, setSelectedValue, mainComponents }) {
+  const navButtonRef = useRef(null)
+  const linksContainerRef = useRef(null)
+
+  function collapseNav() {
+    navButtonRef.current.classList.add('collapsed')
+    linksContainerRef.current.classList.remove('show')
+  }
+
   return (
-    <nav className="navbar navbar-expand-xl shadow-sm bg-white">
+    <nav className="navbar navbar-expand-xxl fixed-top shadow-sm bg-white">
       <div className="container-fluid">
-        <span className="navbar-brand">
-          <span className='bg-dark text-white p-1 rounded-2'>Hooks</span>{' '}
+        <span
+          className="navbar-brand"
+          style={{ cursor: 'pointer' }}
+          onClick={collapseNav}
+        >
+          <span className="bg-dark text-white p-1 rounded-2">Hooks</span>{' '}
           <span className="text-muted">{selectedValue}</span>
         </span>
         <button
+          ref={navButtonRef}
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -19,14 +33,19 @@ function Navbar({ selectedValue, setSelectedValue, mainComponents }) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
+        <div
+          ref={linksContainerRef}
+          className="collapse navbar-collapse"
+          id="navbarNav"
+        >
+          <ul className="navbar-nav ms-auto">
             {mainComponents.map((component) => (
               <NavItem
                 key={component}
                 itemValue={component}
                 selectedValue={selectedValue}
                 setSelectedValue={setSelectedValue}
+                onClick={collapseNav}
               />
             ))}
           </ul>
@@ -36,9 +55,9 @@ function Navbar({ selectedValue, setSelectedValue, mainComponents }) {
   )
 }
 
-function NavItem({ itemValue, selectedValue, setSelectedValue }) {
+function NavItem({ itemValue, selectedValue, setSelectedValue, onClick }) {
   return (
-    <li className="nav-item">
+    <li className="nav-item" onClick={onClick}>
       <input
         type="radio"
         className="d-none"
@@ -69,6 +88,7 @@ NavItem.propTypes = {
   itemValue: PropTypes.string.isRequired,
   selectedValue: PropTypes.string.isRequired,
   setSelectedValue: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 }
 
 export default Navbar

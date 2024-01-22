@@ -12,6 +12,7 @@ import Memorize from '06-memos/Memorize'
 import MemoHook from '06-memos/MemoHook'
 import CallbackHook from '06-memos/CallbackHook'
 import Padre from '07-tarea-memo/Padre'
+import TodoApp from '08-useReducer/TodoApp'
 
 const mainComponents = {
   CounterApp,
@@ -25,6 +26,7 @@ const mainComponents = {
   MemoHook,
   CallbackHook,
   Padre,
+  TodoApp,
 }
 
 function HooksApp() {
@@ -35,18 +37,21 @@ function HooksApp() {
   const SelectedComponent = mainComponents[selectedValue] ?? null
 
   return (
-    <div className="vh-100 d-flex flex-column bg-body-tertiary">
+    <>
       <Navbar
         selectedValue={selectedValue}
         setSelectedValue={setSelectedValue}
         mainComponents={Object.keys(mainComponents)}
       />
-      <div className="d-flex align-items-center justify-content-center flex-grow-1">
-        <div className="p-4 bg-white shadow-sm rounded-4">
+      <div
+        className="d-flex align-items-center justify-content-center bg-body-tertiary"
+        style={{ minHeight: '100dvh' }}
+      >
+        <main className="p-4 bg-white shadow-sm rounded-4">
           <SelectedComponent />
-        </div>
+        </main>
       </div>
-    </div>
+    </>
   )
 }
 

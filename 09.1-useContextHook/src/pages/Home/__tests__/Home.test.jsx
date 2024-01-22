@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import Home from '@Pages/Home'
 import UserContext from '@Context/UserContext'
-import { BrowserRouter } from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom'
 
 describe('Pruebas en Home page', () => {
   const user = {
@@ -12,11 +12,11 @@ describe('Pruebas en Home page', () => {
 
   test('Debe pedir el login', () => {
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <UserContext.Provider value={{ user: null }}>
           <Home />
         </UserContext.Provider>
-      </BrowserRouter>
+      </MemoryRouter>
     )
 
     expect(screen.getByRole('link')).toBeInTheDocument()
@@ -24,11 +24,11 @@ describe('Pruebas en Home page', () => {
 
   test('Debe mostrar al usuario', () => {
     render(
-      <BrowserRouter>
+      <MemoryRouter>
         <UserContext.Provider value={{ user }}>
           <Home />
         </UserContext.Provider>
-      </BrowserRouter>
+      </MemoryRouter>
     )
 
     const userInfo = screen.getByRole('code')

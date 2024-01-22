@@ -9,7 +9,7 @@ function Home() {
   return (
     <Container>
       <h2>Home</h2>
-      {user ? <pre>{JSON.stringify(user, null, 2)}</pre> : <p>Please <Link to="login">login</Link>.</p>}
+      {user ? <code role='code'><pre>{JSON.stringify(user, null, 2)}</pre></code> : <p>Please <Link to="login">login</Link>.</p>}
     </Container>
   )
 }

@@ -38,7 +38,7 @@ function Navbar({ selectedValue, setSelectedValue, mainComponents }) {
           className="collapse navbar-collapse"
           id="navbarNav"
         >
-          <ul className="navbar-nav">
+          <ul className="navbar-nav ms-auto">
             {mainComponents.map((component) => (
               <NavItem
                 key={component}

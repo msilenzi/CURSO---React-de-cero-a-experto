@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "module": "NodeNext",
+    "jsx": "react",
     "baseUrl": "src",
     "paths": {
       "@Components": ["components/index"],
@@ -7,7 +9,7 @@
       "@Hooks": ["hooks/index"],
       "@Hooks/*": ["hooks/*"],
       "@UI": ["ui/index"],
-      "@UI/*": ["ui/*"],
+      "@UI/*": ["ui/*"]
     }
   },
   "include": ["src"],

@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en <TodoApp /> debe coincidir con el snapshot 1`] = `
+<div>
+  <div
+    style="min-width: 420px;"
+  >
+    <h3
+      class="mb-4"
+    >
+      TodoApp
+    </h3>
+    <p
+      class="mb-2 text-muted"
+    >
+      Total: 
+      2
+       - Completed: 
+      1
+       
+      <i>
+        (
+        50.00
+        %)
+      </i>
+    </p>
+    <form
+      class="input-group mb-4"
+    >
+      <input
+        aria-describedby="btn-add"
+        aria-label="New todo"
+        class="form-control form-control-lg form-dark"
+        name="description"
+        placeholder="New todo"
+        type="text"
+        value=""
+      />
+      <button
+        class="btn btn-dark"
+        id="btn-add"
+        type="submit"
+      >
+        Add
+      </button>
+    </form>
+    <ul
+      class="list-group"
+    >
+      <li
+        class="todo-item list-group-item list-group-item-action d-flex justify-content-between align-items-center p-2 "
+        style="cursor: pointer;"
+      >
+        <span
+          class=""
+        >
+          Todo #1
+        </span>
+        <button
+          class="todo-item-delete btn btn-sm btn-outline-danger"
+        >
+          ✕
+        </button>
+      </li>
+      <li
+        class="todo-item list-group-item list-group-item-action d-flex justify-content-between align-items-center p-2 bg-secondary-subtle"
+        style="cursor: pointer;"
+      >
+        <span
+          class="text-muted text-decoration-line-through"
+        >
+          Todo #2
+        </span>
+        <button
+          class="todo-item-delete btn btn-sm btn-outline-danger"
+        >
+          ✕
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
+`;

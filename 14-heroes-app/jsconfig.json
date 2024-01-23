@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
+    "module": "NodeNext",
     "jsx": "react",
     "baseUrl": "./src",
     "paths": {
@@ -21,6 +21,9 @@
 
       "@Pages": ["pages/index"],
       "@Pages/*": ["pages/*"],
+
+      "@Router": ["router/index"],
+      "@Router/*": ["router/*"],
 
       "@Utils": ["utils/index"],
       "@Utils/*": ["utils/*"]

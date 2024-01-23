@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "jsx": "react",
+    "baseUrl": "./src",
+    "paths": {
+      "@Assets": ["assets/index"],
+      "@Assets/*": ["assets/*"],
+
+      "@Components": ["components/index"],
+      "@Components/*": ["components/*"],
+
+      "@Context": ["context/index"],
+      "@Context/*": ["context/*"],
+
+      "@Data": ["data/index"],
+      "@Data/*": ["data/"],
+
+      "@Hooks": ["hooks/index"],
+      "@Hooks/*": ["hooks/*"],
+
+      "@Pages": ["pages/index"],
+      "@Pages/*": ["pages/*"],
+
+      "@Utils": ["utils/index"],
+      "@Utils/*": ["utils/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "public"]
+}

@@ -4,4 +4,4 @@ function DcPage() {
   )
 }
 
-export default DcPage
+export { DcPage }

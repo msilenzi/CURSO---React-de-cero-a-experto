@@ -4,4 +4,4 @@ function MarvelPage() {
   )
 }
 
-export default MarvelPage
+export { MarvelPage }

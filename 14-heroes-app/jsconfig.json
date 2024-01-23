@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "module": "NodeNext",
     "jsx": "react",
     "baseUrl": "./src",
     "paths": {

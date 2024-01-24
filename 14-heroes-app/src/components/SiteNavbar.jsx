@@ -1,9 +1,16 @@
+import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 function SiteNavbar() {
+  const navigate = useNavigate()
+
+  function handleLogout() {
+    navigate('/login', {replace: true })
+  }
+
   return (
     <Navbar expand="sm" bg="dark" data-bs-theme="dark">
       <Container>
@@ -22,7 +29,12 @@ function SiteNavbar() {
           </Nav>
           <Nav>
             <Navbar.Text>Username</Navbar.Text>
-            <Nav.Link as={NavLink} to={'/logout'} className="text-danger">
+            <Nav.Link
+              as={Button}
+              variant="link"
+              onClick={handleLogout}
+              className="text-danger"
+            >
               Logout
             </Nav.Link>
           </Nav>

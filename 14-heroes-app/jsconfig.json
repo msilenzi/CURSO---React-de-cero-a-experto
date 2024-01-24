@@ -13,7 +13,7 @@
       "@Context/*": ["context/*"],
 
       "@Data": ["data/index"],
-      "@Data/*": ["data/"],
+      "@Data/*": ["data/*"],
 
       "@Hooks": ["hooks/index"],
       "@Hooks/*": ["hooks/*"],

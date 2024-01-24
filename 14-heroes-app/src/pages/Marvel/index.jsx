@@ -1,7 +1,7 @@
+import { PageTitle } from '@Components'
+
 function MarvelPage() {
-  return (
-    <div>MarvelPage</div>
-  )
+  return <PageTitle title="Marvel Comics" />
 }
 
 export { MarvelPage }

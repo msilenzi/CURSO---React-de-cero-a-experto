@@ -1,7 +1,7 @@
+import { PageTitle } from '@Components'
+
 function DcPage() {
-  return (
-    <div>DcPage</div>
-  )
+  return <PageTitle title="DC Comics" />
 }
 
 export { DcPage }

@@ -1,5 +1,7 @@
+import { PageTitle } from '@Components'
+
 function HeroById() {
-  return <div>HeroById</div>
+  return <PageTitle title="HeroById" />
 }
 
 export { HeroById }

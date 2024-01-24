@@ -1,5 +1,7 @@
+import { PageTitle } from '@Components'
+
 function Search() {
-  return <div>Search</div>
+  return <PageTitle title="Search" />
 }
 
 export { Search }

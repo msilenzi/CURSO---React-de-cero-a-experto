@@ -1,3 +1,4 @@
+import { PageTitle } from '@Components'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import { useNavigate } from 'react-router-dom'
@@ -11,7 +12,7 @@ function LoginPage() {
 
   return (
     <Container>
-      <h1>Login</h1>
+      <PageTitle title="Login" />
       <Button variant="primary" onClick={handleLogin}>
         Login
       </Button>

@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { SiteNavbar } from '@Components'
-import { DcPage, HeroById, MarvelPage, Search } from '@Pages'
 import Container from 'react-bootstrap/Container'
+import { DcPage, HeroById, MarvelPage, Search } from '@Pages'
+import { SiteNavbar } from '@Components/ui'
 
 function HeroesRouter() {
   return (

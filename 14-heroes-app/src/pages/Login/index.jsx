@@ -1,4 +1,4 @@
-import { PageTitle } from '@Components'
+import { PageTitle } from '@Components/ui'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import { useNavigate } from 'react-router-dom'

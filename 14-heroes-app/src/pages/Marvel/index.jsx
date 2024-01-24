@@ -1,4 +1,4 @@
-import { PageTitle } from '@Components'
+import { PageTitle } from '@Components/ui'
 import { HeroList } from '@Components/heroes'
 
 function MarvelPage() {

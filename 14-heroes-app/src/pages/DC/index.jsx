@@ -1,5 +1,5 @@
-import { PageTitle } from '@Components'
 import { HeroList } from '@Components/heroes'
+import { PageTitle } from '@Components/ui'
 
 function DcPage() {
   return (

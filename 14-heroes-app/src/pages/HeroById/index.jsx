@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
@@ -11,7 +12,7 @@ import { getHeroById } from '@Utils'
 
 function HeroById() {
   const { id } = useParams()
-  const hero = getHeroById(id)
+  const hero = useMemo(() => getHeroById(id), [id])
 
   const navigate = useNavigate()
 

@@ -1,13 +1,7 @@
-import { HeroList } from '@Components/heroes'
-import { PageTitle } from '@Components/ui'
+import { PublisherList } from '@Components/heroes/PublisherList'
 
 function DcPage() {
-  return (
-    <>
-      <PageTitle title='DC Comics' />
-      <HeroList publisher="DC Comics" />
-    </>
-  )
+  return <PublisherList publisher="DC Comics" />
 }
 
 export { DcPage }

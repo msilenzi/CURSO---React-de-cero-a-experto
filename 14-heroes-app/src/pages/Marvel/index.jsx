@@ -1,13 +1,7 @@
-import { PageTitle } from '@Components/ui'
-import { HeroList } from '@Components/heroes'
+import { PublisherList } from '@Components/heroes/PublisherList'
 
 function MarvelPage() {
-  return (
-    <>
-      <PageTitle title='Marvel Comics' />
-      <HeroList publisher="Marvel Comics" />
-    </>
-  )
+  return <PublisherList publisher="Marvel Comics" />
 }
 
 export { MarvelPage }

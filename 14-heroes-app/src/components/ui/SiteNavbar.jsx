@@ -26,6 +26,9 @@ function SiteNavbar() {
             <Nav.Link as={NavLink} to={'/dc'}>
               DC
             </Nav.Link>
+            <Nav.Link as={NavLink} to={'/search'}>
+              Search
+            </Nav.Link>
           </Nav>
           <Nav>
             <Navbar.Text>Username</Navbar.Text>

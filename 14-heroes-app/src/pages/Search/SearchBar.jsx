@@ -17,7 +17,7 @@ function SearchBar() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if (search.trim().length <= 1) return
+    if (search.trim().length < 1) return
 
     navigate(`?q=${search.trim().toLowerCase()}`)
     handleReset()

@@ -8,7 +8,10 @@ import { Link } from 'react-router-dom'
 function HeroCard({ hero }) {
   return (
     <Col>
-      <Card border="light" className="shadow">
+      <Card
+        border="light"
+        className="shadow animate__animated animate__fadeInUp"
+      >
         <Link to={`/hero/${hero.id}`}>
           <Row className="g-0">
             <Col md={4}>

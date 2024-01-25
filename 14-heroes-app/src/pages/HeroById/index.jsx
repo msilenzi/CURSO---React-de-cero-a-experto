@@ -20,11 +20,11 @@ function HeroById() {
 
   return (
     <Row className="mt-2 g-5">
-      <Col md={4}>
+      <Col md={4} className="animate__animated animate__fadeInLeft">
         <Card3d src={`/assets/heroes/${hero.id}.jpg`} alt={hero.superhero} />
       </Col>
-      <Col md={8}>
-        <div className="d-flex align-items-center gap-2 mb-2">
+      <Col md={8} className="animate__animated animate__fadeInRight">
+        <div className="d-flex align-items-center gap-2 mb-2 animate__animated animate__fadeInUp">
           <h1>{hero.superhero}</h1>
           <h4>
             <PublisherBadge publisher={hero.publisher} />
@@ -37,15 +37,28 @@ function HeroById() {
             ←
           </Button>
         </div>
-        <h3 className="text-muted mb-4">{hero.alter_ego}</h3>
-        <p className="mb-4">
+        <h3 className="text-muted mb-4 animate__animated animate__fadeInUp">
+          {hero.alter_ego}
+        </h3>
+        <p className="mb-4 animate__animated animate__fadeInUp">
           <b>First Apperance:</b> {hero.first_appearance}
         </p>
-        <h5>Characters:</h5>
-        <ul>
-          {hero.characters.split(', ').map((ch) => (
-            <li key={ch}>{ch}</li>
-          ))}
+        <h5 className="animate__animated animate__fadeInUp">Characters:</h5>
+        <ul className="animate__animated animate__fadeInUp">
+          {hero.characters.split(', ').map((ch, i) => {
+            const delay = 0.15 * (1 + i)
+
+            console.log(delay)
+
+            return(
+            <li
+              key={ch}
+              style={{animationDelay: `${delay}s`}}
+              className="animate__animated animate__fadeInLeft"
+            >
+              {ch}
+            </li>
+          )})}
         </ul>
       </Col>
     </Row>

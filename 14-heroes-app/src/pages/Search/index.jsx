@@ -26,13 +26,17 @@ function Search() {
 
 function AlertSearch({ search }) {
   if (search !== '') return null
-  return <Alert variant="primary">Search a hero</Alert>
+  return (
+    <Alert variant="primary" className="animate__animated animate__fadeInUp">
+      Search a hero
+    </Alert>
+  )
 }
 
 function AlertNotFound({ search, coincidences }) {
   if (search === '' || coincidences !== 0) return null
   return (
-    <Alert variant="danger">
+    <Alert variant="danger" className="animate__animated animate__fadeInUp">
       No results found for <i>{search}</i>
     </Alert>
   )

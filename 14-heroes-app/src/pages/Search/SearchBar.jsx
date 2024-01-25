@@ -24,7 +24,10 @@ function SearchBar() {
   }
 
   return (
-    <Form className="mb-5" onSubmit={handleSubmit}>
+    <Form
+      className="mb-5 animate__animated animate__fadeIn"
+      onSubmit={handleSubmit}
+    >
       <InputGroup size="lg" className="mb-3 bg-white">
         <Form.Control
           type="text"

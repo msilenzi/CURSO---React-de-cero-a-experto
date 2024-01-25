@@ -1,3 +1,4 @@
+import { Card3d } from '@Components/ui'
 import PropTypes from 'prop-types'
 import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
@@ -10,11 +11,10 @@ function HeroCard({ hero }) {
       <Card border="light" className="shadow">
         <Link to={`/hero/${hero.id}`}>
           <Row className="g-0">
-            <Col md={4} className="p-2 pe-md-0 overflow-hidden rounded-3">
-              <Card.Img
+            <Col md={4}>
+              <Card3d
                 alt={hero.superhero}
                 src={`/assets/heroes/${hero.id}.jpg`}
-                style={{ height: '100%', objectFit: 'cover' }}
               />
             </Col>
             <Col md={8}>

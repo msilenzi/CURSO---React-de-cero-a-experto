@@ -46,15 +46,12 @@ function HeroById() {
         <h5 className="animate__animated animate__fadeInUp">Characters:</h5>
         <ul className="animate__animated animate__fadeInUp">
           {hero.characters.split(', ').map((ch, i) => {
-            const delay = 0.15 * (1 + i)
-
-            console.log(delay)
-
+            const delay = 0.1 * i
             return(
             <li
               key={ch}
               style={{animationDelay: `${delay}s`}}
-              className="animate__animated animate__fadeInLeft"
+              className="animate__animated animate__fadeIn"
             >
               {ch}
             </li>

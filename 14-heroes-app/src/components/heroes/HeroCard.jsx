@@ -13,6 +13,9 @@ function HeroCard({ hero }) {
           <Card.Img
             alt={hero.superhero}
             src={`/assets/heroes/${hero.id}.jpg`}
+            width={500}
+            height={800}
+            className="bg-dark bg-gradient d-block w-100 h-auto"
           />
           <Card.ImgOverlay className="d-flex justify-content-end flex-column card-img-overlay--text-bottom">
             <Card.Title className="fw-bold m-0 fs-4">

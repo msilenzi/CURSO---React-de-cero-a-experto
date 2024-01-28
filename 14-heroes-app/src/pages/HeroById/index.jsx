@@ -10,6 +10,8 @@ import Row from 'react-bootstrap/Row'
 import { Card3d } from '@Components/ui'
 import { getHeroById } from '@Utils'
 
+import '@Components/heroes/HeroCard.css'
+
 function HeroById() {
   const { id } = useParams()
   const hero = useMemo(() => getHeroById(id), [id])
@@ -22,7 +24,13 @@ function HeroById() {
     <Row className="mt-2 g-5">
       <Col md={4} className="animate__animated animate__fadeInLeft">
         <Card3d>
-          <img src={`/assets/heroes/${hero.id}.jpg`} alt={hero.superhero} className='w-100 rounded-3 hero-card' />
+          <img
+            alt={hero.superhero}
+            src={`/assets/heroes/${hero.id}.jpg`}
+            width={500}
+            height={800}
+            className='hero-card rounded-3 bg-dark bg-gradient d-block w-100 h-auto'
+          />
         </Card3d>
       </Col>
       <Col md={8} className="animate__animated animate__fadeInRight">

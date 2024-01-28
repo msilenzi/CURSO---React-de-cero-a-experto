@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types'
+import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { HeroCard } from './HeroCard'
 
 function HeroList({ heroes }) {
   return (
-    <Row xs={1} sm={2} lg={3} className="g-3 pb-5">
-      {heroes.map((hero) => (
-        <HeroCard key={hero.id} hero={hero} />
-      ))}
-    </Row>
+    <div className="animate__animated animate__fadeInUp">
+      <Row xs={2} sm={3} md={4} lg={5} className="g-2 g-md-3 pb-5">
+        {heroes.map((hero) => (
+          <Col key={hero.id}>
+            <HeroCard hero={hero} />
+          </Col>
+        ))}
+      </Row>
+    </div>
   )
 }
 

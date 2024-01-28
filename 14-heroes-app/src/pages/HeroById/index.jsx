@@ -21,7 +21,9 @@ function HeroById() {
   return (
     <Row className="mt-2 g-5">
       <Col md={4} className="animate__animated animate__fadeInLeft">
-        <Card3d src={`/assets/heroes/${hero.id}.jpg`} alt={hero.superhero} />
+        <Card3d>
+          <img src={`/assets/heroes/${hero.id}.jpg`} alt={hero.superhero} className='w-100 rounded-3 hero-card' />
+        </Card3d>
       </Col>
       <Col md={8} className="animate__animated animate__fadeInRight">
         <div className="d-flex align-items-center gap-2 mb-2 animate__animated animate__fadeInUp">

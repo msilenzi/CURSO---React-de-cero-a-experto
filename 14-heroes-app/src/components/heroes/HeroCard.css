@@ -1,0 +1,16 @@
+.hero-card {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3);
+}
+
+.hero-card:hover {
+  box-shadow: 0 0 3rem rgba(0, 0, 0, 0.3);
+}
+
+.card-img-overlay--text-bottom {
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0) 45%
+  );
+  text-wrap: balance;
+}

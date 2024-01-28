@@ -1,6 +1,5 @@
-import { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import Card from 'react-bootstrap/Card'
 import './Card3d.css'
 
 function map(val, minA, maxA, minB, maxB) {
@@ -12,17 +11,23 @@ const initialStyles = {
   filter: 'brightness(1)',
 }
 
-function Card3d({ src, alt }) {
+function Card3d({ children }) {
   const [styles, setStyles] = useState(initialStyles)
   const animationFrameRef = useRef(null)
 
   function handleMouseMove(e) {
-    const limit = 15
     cancelAnimationFrame(animationFrameRef.current)
+
+    const limit = 15
+    const boundingBox = e.currentTarget.getBoundingClientRect()
+
     animationFrameRef.current = requestAnimationFrame(() => {
-      let rotateY = map(e.nativeEvent.offsetX, 0, 180, -limit, limit)
-      let rotateX = map(e.nativeEvent.offsetY, 0, 250, limit, -limit)
-      let brightness = map(e.nativeEvent.offsetY, 0, 250, 1.25, 0.75)
+      let offsetX = e.nativeEvent.clientX - boundingBox.left
+      let offsetY = e.nativeEvent.clientY - boundingBox.top
+
+      let rotateY = map(offsetX, 0, boundingBox.width, -limit, limit)
+      let rotateX = map(offsetY, 0, boundingBox.height, limit, -limit)
+      let brightness = map(offsetY, 0, boundingBox.height, 1.25, 0.75)
 
       setStyles({
         transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
@@ -39,26 +44,20 @@ function Card3d({ src, alt }) {
 
   return (
     <div
-      className="card3d h-100"
+      className="card3d"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <Card.Img
-        alt={alt}
-        src={src}
-        style={{
-          height: '100%',
-          objectFit: 'cover',
-          ...styles,
-        }}
-      />
+      {React.cloneElement(children, {
+        className: `card3d-children ${children.props.className || ''}`,
+        style: { ...styles },
+      })}
     </div>
   )
 }
 
 Card3d.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
 }
 
 export { Card3d }

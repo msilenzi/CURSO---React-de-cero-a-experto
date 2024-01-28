@@ -1,51 +1,28 @@
 import { Card3d } from '@Components/ui'
 import PropTypes from 'prop-types'
 import Card from 'react-bootstrap/Card'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
 import { Link } from 'react-router-dom'
+
+import './HeroCard.css'
 
 function HeroCard({ hero }) {
   return (
-    <Col>
-      <Card
-        border="light"
-        className="shadow animate__animated animate__fadeInUp"
-      >
-        <Link to={`/hero/${hero.id}`}>
-          <Row className="g-0">
-            <Col md={4}>
-              <Card3d
-                alt={hero.superhero}
-                src={`/assets/heroes/${hero.id}.jpg`}
-              />
-            </Col>
-            <Col md={8}>
-              <Card.Body>
-                <Card.Title className="clamped-text" title={hero.superhero}>
-                  {hero.superhero}
-                </Card.Title>
-                <Card.Text className="clamped-text" title={hero.alter_ego}>
-                  {hero.alter_ego}
-                </Card.Text>
-                <Card.Text
-                  className="text-muted clamped-text"
-                  title={hero.characters}
-                >
-                  {hero.characters}
-                </Card.Text>
-                <Card.Text
-                  className="clamped-text"
-                  title={hero.first_appearance}
-                >
-                  <small>{hero.first_appearance}</small>
-                </Card.Text>
-              </Card.Body>
-            </Col>
-          </Row>
+    <Card3d>
+      <Card className="border-0 text-white">
+        <Link to={`/hero/${hero.id}`} className="hero-card">
+          <Card.Img
+            alt={hero.superhero}
+            src={`/assets/heroes/${hero.id}.jpg`}
+          />
+          <Card.ImgOverlay className="d-flex justify-content-end flex-column card-img-overlay--text-bottom">
+            <Card.Title className="fw-bold m-0 fs-4">
+              {hero.superhero}
+            </Card.Title>
+            <Card.Text>{hero.alter_ego}</Card.Text>
+          </Card.ImgOverlay>
         </Link>
       </Card>
-    </Col>
+    </Card3d>
   )
 }
 

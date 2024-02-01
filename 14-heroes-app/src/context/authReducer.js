@@ -4,19 +4,19 @@ export function authReducer(state, action) {
   switch (action.type) {
     case authTypes.login:
       return {
+        ...state,
         logged: true,
         name: action.payload,
-        ...state,
       }
 
     case authTypes.logout:
       return {
+        ...state,
         logged: false,
         name: null,
-        ...state,
       }
 
     default:
-      return state
+      throw Error('Unknown action: ' + action.type)
   }
 }

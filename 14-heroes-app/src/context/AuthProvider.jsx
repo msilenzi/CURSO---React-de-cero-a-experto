@@ -1,16 +1,23 @@
-import { useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import PropTypes from 'prop-types'
 import { AuthContext } from './AuthContext'
 import { authReducer } from './authReducer'
 import { authTypes } from '@Types'
 
-const initialState = {
-  logged: false,
-  name: null,
+function initReducer() {
+  const user = localStorage.getItem('HERO-APP__user')
+  return {
+    logged: !!user,
+    name: user,
+  }
 }
 
 function AuthProvider({ children }) {
-  const [state, dispatch] = useReducer(authReducer, initialState)
+  const [state, dispatch] = useReducer(authReducer, {}, initReducer)
+
+  useEffect(() => {
+    localStorage.setItem('HERO-APP__user', state.name)
+  }, [state])
 
   function login(username) {
     dispatch({

@@ -13,7 +13,7 @@ export function authReducer(state, action) {
       return {
         ...state,
         logged: false,
-        name: null,
+        name: '',
       }
 
     default:

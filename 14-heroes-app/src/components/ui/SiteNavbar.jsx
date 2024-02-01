@@ -7,12 +7,13 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 function SiteNavbar() {
-  const { state } = useContext(AuthContext)
+  const { state, logout } = useContext(AuthContext)
 
   const navigate = useNavigate()
 
   function handleLogout() {
     navigate('/login', { replace: true })
+    logout()
   }
 
   return (

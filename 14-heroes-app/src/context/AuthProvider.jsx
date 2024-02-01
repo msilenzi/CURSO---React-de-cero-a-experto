@@ -19,8 +19,12 @@ function AuthProvider({ children }) {
     })
   }
 
+  function logout() {
+    dispatch({ type: authTypes.logout })
+  }
+
   return (
-    <AuthContext.Provider value={{ state, login }}>
+    <AuthContext.Provider value={{ state, login, logout }}>
       {children}
     </AuthContext.Provider>
   )

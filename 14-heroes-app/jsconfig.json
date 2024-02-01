@@ -24,6 +24,9 @@
       "@Router": ["router/index"],
       "@Router/*": ["router/*"],
 
+      "@Types": ["types/index"],
+      "@Types/*": ["types/*"],
+
       "@Utils": ["utils/index"],
       "@Utils/*": ["utils/*"]
     }

@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": "src",
+    "paths": {
+      "@Auth": ["auth/index"],
+      "@Auth/*": ["auth/*"],
+      
+      "@Journal": ["journal/index"],
+      "@Journal/*": ["journal/*"],
+
+      "@Router": ["router/index"],
+      "@Router/*": ["router/*"],
+
+      "@Theme": ["theme/index"],
+      "@Theme/*": ["theme/*"],
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "public"]
+}

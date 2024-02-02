@@ -12,8 +12,9 @@ function LoginPage() {
   const navigate = useNavigate()
 
   function handleLogin() {
+    const path = localStorage.getItem('HERO-APP__lastPath') ?? '/'
     login('msilenzi')
-    navigate('/', { replace: true })
+    navigate(path, { replace: true })
   }
 
   return (

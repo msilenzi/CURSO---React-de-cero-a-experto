@@ -20,7 +20,11 @@ function LoginPage() {
   return (
     <Container>
       <PageTitle title="Login" />
-      <Button variant="primary" onClick={handleLogin}>
+      <Button
+        className="animate__animated animate__fadeInUp"
+        variant="primary"
+        onClick={handleLogin}
+      >
         Login
       </Button>
     </Container>

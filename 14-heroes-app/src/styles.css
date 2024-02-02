@@ -1,0 +1,15 @@
+body {
+  min-height: 100vh;
+}
+
+.clamped-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+}
+
+.card a {
+  text-decoration: unset;
+  color: unset;
+}

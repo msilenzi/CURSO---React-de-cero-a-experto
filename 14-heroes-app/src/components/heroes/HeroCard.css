@@ -1,0 +1,17 @@
+.card3d .hero-card {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3);
+  transition: box-shadow 250ms ease-in-out;
+}
+
+.card3d:hover .hero-card {
+  box-shadow: 0 0 3rem rgba(0, 0, 0, 0.3);
+}
+
+.card-img-overlay--text-bottom {
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0) 45%
+  );
+  text-wrap: balance;
+}

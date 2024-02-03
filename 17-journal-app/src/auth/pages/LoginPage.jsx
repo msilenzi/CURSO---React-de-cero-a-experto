@@ -9,19 +9,22 @@ function LoginPage() {
       <Stack spacing={2}>
         <form>
           <Stack spacing={2}>
-            <TextField
-              label="Email"
-              type="email"
-              placeholder="example@email.com"
-              fullWidth
+          <TextField
               required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
             />
             <TextField
+              required
+              fullWidth
+              name="password"
               label="Password"
               type="password"
-              placeholder="Password"
-              fullWidth
-              required
+              id="password"
+              autoComplete="current-password"
             />
             <Button variant="contained" size="large" type="submit">
               Login

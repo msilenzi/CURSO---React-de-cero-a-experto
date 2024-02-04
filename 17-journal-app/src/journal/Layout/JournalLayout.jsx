@@ -9,8 +9,19 @@ function JournalLayout({ children }) {
     <Box sx={{ display: 'flex' }}>
       <Navbar drawerWidth={drawerWidth} />
       <Sidebar drawerWidth={drawerWidth} />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, pt: 0 }}>
-        <Toolbar sx={{ mb: 3 }} /> {/* Fixes problem with content under navbar */}
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          pt: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
+        }}
+      >
+        {/* Fixes problem with content under navbar */}
+        <Toolbar sx={{ mb: 3 }} />
         {children}
       </Box>
     </Box>

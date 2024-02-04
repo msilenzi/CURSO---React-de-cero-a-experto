@@ -1,11 +1,10 @@
 import { JournalLayout } from '@Journal/Layout'
-import { Typography } from '@mui/material'
+import { NothingSelectedView } from '@Journal/views'
 
 function JournalPage() {
   return (
     <JournalLayout>
-      <Typography variant="h1">JournalPage</Typography>
-      {/* NothingSelected */}
+      <NothingSelectedView />
       {/* NoteView */}
     </JournalLayout>
   )

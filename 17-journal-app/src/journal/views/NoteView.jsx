@@ -1,5 +1,6 @@
 import { Save } from '@mui/icons-material'
 import { Button, Grid, Stack, TextField, Typography } from '@mui/material'
+import { ImageGallery } from '@Journal/components'
 
 function NoteView() {
   return (
@@ -35,6 +36,7 @@ function NoteView() {
         multiline
         minRows={5}
       />
+      <ImageGallery />
     </Stack>
   )
 }

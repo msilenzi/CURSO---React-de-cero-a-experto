@@ -18,6 +18,7 @@ function JournalLayout({ children }) {
           display: 'flex',
           flexDirection: 'column',
           minHeight: '100vh',
+          width: { xs: '100%', md: `calc(100% - ${drawerWidth}px)` },
         }}
       >
         {/* Fixes problem with content under navbar */}

@@ -17,7 +17,11 @@ function Sidebar({ drawerWidth }) {
   return (
     <Box
       component="nav"
-      sx={{ width: { sm: drawerWidth, flexShrink: { sm: 0 } } }}
+      sx={{
+        width: { sm: drawerWidth },
+        flexShrink: { sm: 0 },
+        display: { xs: 'none', md: 'inherit' },
+      }}
     >
       <Drawer
         variant="permanent"
@@ -35,7 +39,7 @@ function Sidebar({ drawerWidth }) {
             Manuel Silenzi
           </Typography>
         </Toolbar>
-        <Divider sx={{mt: '-1px'}} />
+        <Divider sx={{ mt: '-1px' }} />
         <List>
           {['Enero', 'Febrero', 'Marzo', 'Abril'].map((text) => (
             <ListItemButton key={text}>

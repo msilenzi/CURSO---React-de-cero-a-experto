@@ -4,7 +4,7 @@ import { ImageGallery } from '@Journal/components'
 
 function NoteView() {
   return (
-    <Stack spacing={3} sx={{width: '100%', maxWidth: 'md', m: '0 auto'}}>
+    <Stack spacing={3} sx={{width: '100%', maxWidth: '720px', m: '0 auto'}}>
       <Grid
         container
         direction="row"

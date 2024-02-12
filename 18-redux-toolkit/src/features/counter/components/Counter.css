@@ -28,16 +28,15 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
- .logo {
+  .logo {
     animation: logo-spin infinite 20s linear;
   }
 }
 
 .card {
   padding: 2em;
-}
-
-.foo {
-  color: #00D8FF;
-  color: #764ABC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
 }

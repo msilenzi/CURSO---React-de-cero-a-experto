@@ -6,7 +6,7 @@ function Pokemon() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getPokemons())
+    dispatch(getPokemons(0))
   }, [dispatch])
 
   return <h1>Pokemon</h1>

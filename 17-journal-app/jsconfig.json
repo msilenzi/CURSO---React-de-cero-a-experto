@@ -5,7 +5,10 @@
     "paths": {
       "@Auth": ["auth/index"],
       "@Auth/*": ["auth/*"],
-      
+
+      "@Hooks": ["hooks/index"],
+      "@Hooks/*": ["hooks/*"],
+
       "@Journal": ["journal/index"],
       "@Journal/*": ["journal/*"],
 
@@ -16,7 +19,7 @@
       "@Store/*": ["store/*"],
 
       "@Theme": ["theme/index"],
-      "@Theme/*": ["theme/*"],
+      "@Theme/*": ["theme/*"]
     }
   },
   "include": ["src"],

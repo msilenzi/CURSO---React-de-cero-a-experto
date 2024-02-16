@@ -12,6 +12,9 @@
       "@Router": ["router/index"],
       "@Router/*": ["router/*"],
 
+      "@Store": ["store/index"],
+      "@Store/*": ["store/*"],
+
       "@Theme": ["theme/index"],
       "@Theme/*": ["theme/*"],
     }

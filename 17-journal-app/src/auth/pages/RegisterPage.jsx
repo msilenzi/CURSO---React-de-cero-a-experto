@@ -2,12 +2,13 @@ import { Link as RouterLink } from 'react-router-dom'
 import { AuthLayout } from '@Auth/layout'
 import { Google } from '@mui/icons-material'
 import { Button, Link, Stack, TextField, Typography } from '@mui/material'
-import { PasswordField } from '@Auth/components'
+import { PasswordField, PasswordStrength } from '@Auth/components'
 import { useForm } from '@Hooks'
 
 const formData = {
   email: 'jdoe@email.com',
   password: '123456',
+  confirmPassword: '123456',
   firstName: 'John',
   lastName: 'Doe',
 }
@@ -71,6 +72,17 @@ function RegisterPage() {
               value={formState.password}
               onChange={handleInputChange}
             />
+            <PasswordField
+              id="confirmPassword"
+              name="confirmPassword"
+              label="Confirm password"
+              autoComplete="off"
+              required
+              fullWidth
+              value={formState.confirmPassword}
+              onChange={handleInputChange}
+            />
+            <PasswordStrength password={formState.password} />
             <Button variant="contained" size="large" type="submit">
               Sign up
             </Button>

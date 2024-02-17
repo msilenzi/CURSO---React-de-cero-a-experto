@@ -13,6 +13,11 @@ function PasswordField(props) {
     <TextField
       {...props}
       type={showPassword ? 'text' : 'password'}
+      sx={{
+        '&:focus-within svg': {
+          color: 'primary.main',
+        },
+      }}
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">

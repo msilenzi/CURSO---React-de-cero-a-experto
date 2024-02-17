@@ -2,8 +2,23 @@ import { Link as RouterLink } from 'react-router-dom'
 import { AuthLayout } from '@Auth/layout'
 import { Google } from '@mui/icons-material'
 import { Button, Link, Stack, TextField, Typography } from '@mui/material'
+import { useForm } from '@Hooks'
+
+const formData = {
+  email: 'jdoe@email.com',
+  password: '123456',
+  firstName: 'John',
+  lastName: 'Doe',
+}
 
 function RegisterPage() {
+  const { formState, handleInputChange } = useForm(formData)
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    console.log(formState)
+  }
+
   return (
     <AuthLayout title="Sign up">
       <Stack spacing={2}>
@@ -11,39 +26,50 @@ function RegisterPage() {
           <Stack spacing={2}>
             <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
               <TextField
-                autoComplete="given-name"
+                type="text"
+                id="firstName"
                 name="firstName"
+                label="First Name"
+                autoComplete="given-name"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
                 autoFocus
+                value={formState.firstName}
+                onChange={handleInputChange}
               />
               <TextField
+                type="text"
+                id="lastName"
+                name="lastName"
+                label="Last Name"
+                autoComplete="family-name"
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="family-name"
+                value={formState.lastName}
+                onChange={handleInputChange}
               />
             </Stack>
             <TextField
+              type="email"
+              id="email"
+              name="email"
+              label="Email Address"
+              autoComplete="email"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              value={formState.email}
+              onChange={handleInputChange}
             />
             <TextField
-              required
-              fullWidth
-              name="password"
-              label="Password"
               type="password"
               id="password"
+              name="password"
+              label="Password"
               autoComplete="new-password"
+              required
+              fullWidth
+              value={formState.password}
+              onChange={handleInputChange}
             />
             <Button variant="contained" size="large" type="submit">
               Sign up

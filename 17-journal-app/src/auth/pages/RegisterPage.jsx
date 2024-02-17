@@ -2,6 +2,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import { AuthLayout } from '@Auth/layout'
 import { Google } from '@mui/icons-material'
 import { Button, Link, Stack, TextField, Typography } from '@mui/material'
+import { PasswordField } from '@Auth/components'
 import { useForm } from '@Hooks'
 
 const formData = {
@@ -60,8 +61,7 @@ function RegisterPage() {
               value={formState.email}
               onChange={handleInputChange}
             />
-            <TextField
-              type="password"
+            <PasswordField
               id="password"
               name="password"
               label="Password"

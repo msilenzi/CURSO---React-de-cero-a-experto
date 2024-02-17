@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Button, Link, Stack, TextField, Typography } from '@mui/material'
 import { Google } from '@mui/icons-material'
 import { AuthLayout } from '@Auth/layout'
+import { PasswordField } from '@Auth/components'
 import { useForm } from '@Hooks'
 import { checkAuth, startGoogleSignIn } from '@Store/auth'
 
@@ -34,24 +35,23 @@ function LoginPage() {
         <form onSubmit={handleSubmit}>
           <Stack spacing={2}>
             <TextField
-              required
-              fullWidth
               id="email"
               name="email"
               label="Email Address"
               autoComplete="email"
+              required
+              fullWidth
               value={formState.email}
               onChange={handleInputChange}
               disabled={isAuthenticating}
             />
-            <TextField
-              required
-              fullWidth
+            <PasswordField
               id="password"
               name="password"
               label="Password"
-              type="password"
               autoComplete="current-password"
+              required
+              fullWidth
               value={formState.password}
               onChange={handleInputChange}
               disabled={isAuthenticating}

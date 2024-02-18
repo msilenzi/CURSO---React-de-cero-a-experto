@@ -2,10 +2,11 @@
   margin-top: 0;
   max-height: 0;
   overflow: hidden;
-  transition: .3s ease-in-out all;
+  transition: 0.3s ease-in-out all;
 }
 
-*:has(#password:focus-within) + #password-strength {
+*:has(#password:focus) + #password-strength,
+*:has([aria-label='toggle password visibility']:focus) + #password-strength {
   margin-top: 0.5em;
   max-height: 10em;
 }

@@ -1,20 +1,49 @@
 import { Link as RouterLink } from 'react-router-dom'
-import { AuthLayout } from '@Auth/layout'
 import { Google } from '@mui/icons-material'
 import { Button, Link, Stack, TextField, Typography } from '@mui/material'
+import { AuthLayout } from '@Auth/layout'
 import { PasswordField, PasswordStrength } from '@Auth/components'
 import { useForm } from '@Hooks'
 
 const formData = {
-  email: 'jdoe@email.com',
-  password: '123456',
-  confirmPassword: '123456',
-  firstName: 'John',
-  lastName: 'Doe',
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+}
+
+const formValidations = {
+  firstName: {
+    validator: (value) => value.trim().length > 0,
+    message: 'First name is required',
+  },
+  lastName: {
+    validator: (value) => value.trim().length > 0,
+    message: 'Last name is required',
+  },
+  email: {
+    validator: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+    message: 'Invalid email address.',
+  },
+  password: {
+    validator: (value) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(value),
+    message: 'Invalid password',
+  },
+  confirmPassword: {
+    validator: undefined,
+    message: 'Passwords must match',
+  },
 }
 
 function RegisterPage() {
-  const { formState, handleInputChange } = useForm(formData)
+  const {
+    formState,
+    formErrors,
+    handleInputChange,
+    handleInputValidation,
+    validate,
+  } = useForm(formData, formValidations)
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -24,7 +53,7 @@ function RegisterPage() {
   return (
     <AuthLayout title="Sign up">
       <Stack spacing={2}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Stack spacing={2}>
             <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
               <TextField
@@ -38,6 +67,9 @@ function RegisterPage() {
                 autoFocus
                 value={formState.firstName}
                 onChange={handleInputChange}
+                onBlur={handleInputValidation}
+                error={formErrors.firstName !== null}
+                helperText={formErrors.firstName}
               />
               <TextField
                 type="text"
@@ -49,6 +81,9 @@ function RegisterPage() {
                 fullWidth
                 value={formState.lastName}
                 onChange={handleInputChange}
+                onBlur={handleInputValidation}
+                error={formErrors.lastName !== null}
+                helperText={formErrors.lastName}
               />
             </Stack>
             <TextField
@@ -61,6 +96,9 @@ function RegisterPage() {
               fullWidth
               value={formState.email}
               onChange={handleInputChange}
+              onBlur={handleInputValidation}
+              error={formErrors.email !== null}
+              helperText={formErrors.email}
             />
             <PasswordField
               id="password"
@@ -71,6 +109,16 @@ function RegisterPage() {
               fullWidth
               value={formState.password}
               onChange={handleInputChange}
+              onBlur={(e) => {
+                handleInputValidation(e)
+                validate(
+                  'confirmPassword',
+                  formState.confirmPassword,
+                  () => formState.confirmPassword === e.target.value
+                )
+              }}
+              error={formErrors.password !== null}
+              helperText={formErrors.password}
             />
             <PasswordField
               id="confirmPassword"
@@ -81,6 +129,14 @@ function RegisterPage() {
               fullWidth
               value={formState.confirmPassword}
               onChange={handleInputChange}
+              onBlur={(e) =>
+                handleInputValidation(
+                  e,
+                  () => e.target.value === formState.password
+                )
+              }
+              error={formErrors.confirmPassword !== null}
+              helperText={formErrors.confirmPassword}
             />
             <PasswordStrength password={formState.password} />
             <Button variant="contained" size="large" type="submit">

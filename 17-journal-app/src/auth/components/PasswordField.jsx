@@ -17,6 +17,9 @@ function PasswordField(props) {
         '&:focus-within svg': {
           color: 'primary.main',
         },
+        '&:focus-within [aria-invalid="true"] + * svg': {
+          color: 'error.main'
+        }
       }}
       InputProps={{
         endAdornment: (

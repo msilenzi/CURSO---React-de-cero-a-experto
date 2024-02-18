@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 function initFormErrors(formValidations) {
   if (!formValidations) return null
@@ -12,16 +12,16 @@ function initFormErrors(formValidations) {
   )
 }
 
-function useForm(initialForm, formValidations) {
-  const [formState, setFormState] = useState(initialForm)
+function useForm(initialFormData, initialFormValidations) {
+  const [formState, setFormState] = useState(initialFormData)
   const [formErrors, setFormErrors] = useState(() =>
-    initFormErrors(formValidations)
+    initFormErrors(initialFormValidations)
   )
+  const [formValidations, setFormValidations] = useState(initialFormValidations)
 
-  function validate(field, value, customValidator) {
+  function validate(field, value) {
     const { validator, message } = formValidations[field]
-    const currentValidator = customValidator ?? validator
-    const isValid = currentValidator(value)
+    const isValid = validator(value)
     setFormErrors((prevFormErrors) => ({
       ...prevFormErrors,
       [field]: isValid ? null : message,
@@ -33,13 +33,26 @@ function useForm(initialForm, formValidations) {
     setFormState({ ...formState, [e.target.name]: e.target.value })
   }
 
-  function handleInputValidation(e, customValidator) {
-    validate(e.target.name, e.target.value, customValidator)
+  function handleInputValidation(e) {
+    validate(e.target.name, e.target.value)
   }
 
   function handleReset() {
-    setFormState(initialForm)
+    setFormState(initialFormData)
   }
+
+  const setFormValidation = useCallback(
+    (field, validation) => {
+      setFormValidations((prevFormValidations) => ({
+        ...prevFormValidations,
+        [field]: {
+          ...prevFormValidations[field],
+          ...validation,
+        },
+      }))
+    },
+    [setFormValidations]
+  )
 
   return {
     formState,
@@ -48,6 +61,7 @@ function useForm(initialForm, formValidations) {
     handleInputValidation,
     handleReset,
     validate,
+    setFormValidation,
   }
 }
 

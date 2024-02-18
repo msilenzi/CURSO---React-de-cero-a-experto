@@ -1,11 +1,12 @@
+import { useEffect } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import { Google } from '@mui/icons-material'
 import { Button, Link, Stack, TextField, Typography } from '@mui/material'
+import { Google } from '@mui/icons-material'
+import { useForm } from '@Hooks'
 import { AuthLayout } from '@Auth/layout'
 import { PasswordField, PasswordStrength } from '@Auth/components'
-import { useForm } from '@Hooks'
 
-const formData = {
+const initialFormData = {
   firstName: '',
   lastName: '',
   email: '',
@@ -13,7 +14,7 @@ const formData = {
   confirmPassword: '',
 }
 
-const formValidations = {
+const initialFormValidations = {
   firstName: {
     validator: (value) => value.trim().length > 0,
     message: 'First name is required',
@@ -31,7 +32,7 @@ const formValidations = {
     message: 'Invalid password',
   },
   confirmPassword: {
-    validator: undefined,
+    validator: null,
     message: 'Passwords must match',
   },
 }
@@ -43,7 +44,14 @@ function RegisterPage() {
     handleInputChange,
     handleInputValidation,
     validate,
-  } = useForm(formData, formValidations)
+    setFormValidation,
+  } = useForm(initialFormData, initialFormValidations)
+
+  useEffect(() => {
+    setFormValidation('confirmPassword', {
+      validator: (value) => formState.password === value,
+    })
+  }, [formState.password, setFormValidation])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -111,11 +119,7 @@ function RegisterPage() {
               onChange={handleInputChange}
               onBlur={(e) => {
                 handleInputValidation(e)
-                validate(
-                  'confirmPassword',
-                  formState.confirmPassword,
-                  () => formState.confirmPassword === e.target.value
-                )
+                validate('confirmPassword', formState.confirmPassword)
               }}
               error={formErrors.password !== null}
               helperText={formErrors.password}
@@ -129,12 +133,7 @@ function RegisterPage() {
               fullWidth
               value={formState.confirmPassword}
               onChange={handleInputChange}
-              onBlur={(e) =>
-                handleInputValidation(
-                  e,
-                  () => e.target.value === formState.password
-                )
-              }
+              onBlur={handleInputValidation}
               error={formErrors.confirmPassword !== null}
               helperText={formErrors.confirmPassword}
             />

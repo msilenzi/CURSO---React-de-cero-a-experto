@@ -54,6 +54,15 @@ function useForm(initialFormData, initialFormValidations) {
     [setFormValidations]
   )
 
+  function validateForm() {
+    // Validate all inputs
+    const arr = Object.keys(formValidations).map((field) =>
+      validate(field, formState[field])
+    )
+    // Check if all were valid
+    return arr.every((value) => value)
+  }
+
   return {
     formState,
     formErrors,
@@ -62,6 +71,7 @@ function useForm(initialFormData, initialFormValidations) {
     handleReset,
     validate,
     setFormValidation,
+    validateForm,
   }
 }
 

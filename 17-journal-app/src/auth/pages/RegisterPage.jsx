@@ -45,6 +45,7 @@ function RegisterPage() {
     handleInputValidation,
     validate,
     setFormValidation,
+    validateForm,
   } = useForm(initialFormData, initialFormValidations)
 
   useEffect(() => {
@@ -56,12 +57,13 @@ function RegisterPage() {
   function handleSubmit(e) {
     e.preventDefault()
     console.log(formState)
+    console.log(validateForm())
   }
 
   return (
     <AuthLayout title="Sign up">
       <Stack spacing={2}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
           <Stack spacing={2}>
             <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
               <TextField

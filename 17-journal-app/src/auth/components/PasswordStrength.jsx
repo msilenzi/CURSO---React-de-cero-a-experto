@@ -11,9 +11,12 @@ import CheckIcon from '@mui/icons-material/Check'
 import CloseIcon from '@mui/icons-material/Close'
 import React from 'react'
 
-const PasswordStrength = React.memo(function PasswordStrength({ password }) {
+const PasswordStrength = React.memo(function PasswordStrength({
+  id,
+  password,
+}) {
   return (
-    <Box sx={{ pl: 2 }}>
+    <Box id={id} sx={{ pl: 2 }}>
       <Typography variant="body2">Password must contain:</Typography>
       <List dense>
         <PasswordItem
@@ -48,6 +51,7 @@ function PasswordItem({ primaryText, isValid }) {
 }
 
 PasswordStrength.propTypes = {
+  id: PropTypes.string,
   password: PropTypes.string.isRequired,
 }
 

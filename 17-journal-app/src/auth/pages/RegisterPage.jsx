@@ -6,6 +6,8 @@ import { useForm } from '@Hooks'
 import { AuthLayout } from '@Auth/layout'
 import { PasswordField, PasswordStrength } from '@Auth/components'
 
+import './RegisterPage.css'
+
 const initialFormData = {
   firstName: '',
   lastName: '',
@@ -126,6 +128,10 @@ function RegisterPage() {
               error={formErrors.password !== null}
               helperText={formErrors.password}
             />
+            <PasswordStrength
+              id="password-strength"
+              password={formState.password}
+            />
             <PasswordField
               id="confirmPassword"
               name="confirmPassword"
@@ -139,7 +145,6 @@ function RegisterPage() {
               error={formErrors.confirmPassword !== null}
               helperText={formErrors.confirmPassword}
             />
-            <PasswordStrength password={formState.password} />
             <Button variant="contained" size="large" type="submit">
               Sign up
             </Button>

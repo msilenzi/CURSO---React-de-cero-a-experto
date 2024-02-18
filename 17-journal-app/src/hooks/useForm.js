@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 function initFormErrors(formValidations) {
+  if (!formValidations) return null
+
   return Object.keys(formValidations).reduce(
     (acc, key) => ({
       ...acc,

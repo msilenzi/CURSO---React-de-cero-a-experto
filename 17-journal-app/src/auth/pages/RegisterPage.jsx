@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { Button, Link, Stack, TextField, Typography } from '@mui/material'
 import { Google } from '@mui/icons-material'
 import { useForm } from '@Hooks'
 import { AuthLayout } from '@Auth/layout'
 import { PasswordField, PasswordStrength } from '@Auth/components'
+import { startCreatingUserWithEmailAndPassword } from '@Store/auth'
 
 import './RegisterPage.css'
 
@@ -40,6 +42,8 @@ const initialFormValidations = {
 }
 
 function RegisterPage() {
+  const dispatch = useDispatch()
+
   const {
     formState,
     formErrors,
@@ -58,8 +62,9 @@ function RegisterPage() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(formState)
-    console.log(validateForm())
+    if (!validateForm()) return
+
+    dispatch(startCreatingUserWithEmailAndPassword(formState))
   }
 
   return (

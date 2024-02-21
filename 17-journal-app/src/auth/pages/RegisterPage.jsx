@@ -1,7 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { Button, Link, Stack, TextField, Typography } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { Alert, Button, Link, Stack, TextField, Typography } from '@mui/material'
 import { Google } from '@mui/icons-material'
 import { useForm } from '@Hooks'
 import { AuthLayout } from '@Auth/layout'
@@ -43,6 +43,13 @@ const initialFormValidations = {
 
 function RegisterPage() {
   const dispatch = useDispatch()
+
+  const { status, errorMessage } = useSelector((state) => state.auth)
+
+  const isCheckingAuthentication = useMemo(
+    () => status === 'checking',
+    [status]
+  )
 
   const {
     formState,
@@ -150,7 +157,8 @@ function RegisterPage() {
               error={formErrors.confirmPassword !== null}
               helperText={formErrors.confirmPassword}
             />
-            <Button variant="contained" size="large" type="submit">
+            <Alert severity='error' sx={{display: !errorMessage ? 'none' : '' }}>{errorMessage}</Alert>
+            <Button variant="contained" size="large" type="submit" disabled={isCheckingAuthentication}>
               Sign up
             </Button>
           </Stack>

@@ -1,3 +1,2 @@
-import useForm from './useForm'
-
-export { useForm }
+export { default as useCheckAuth } from './useCheckAuth'
+export { default as useForm } from './useForm'

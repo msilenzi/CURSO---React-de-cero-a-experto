@@ -6,6 +6,9 @@
       "@Auth": ["auth/index"],
       "@Auth/*": ["auth/*"],
 
+      "@Components": ["components/index"],
+      "@Components/*": ["components/*"],
+
       "@Hooks": ["hooks/index"],
       "@Hooks/*": ["hooks/*"],
 

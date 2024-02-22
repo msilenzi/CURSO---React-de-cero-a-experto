@@ -6,12 +6,6 @@ import {
 } from 'firebase/providers'
 import { checkingCredentials, login, logout } from './authSlice'
 
-export function checkAuth(email, password) {
-  return async (dispatch) => {
-    dispatch(checkingCredentials())
-  }
-}
-
 export function startGoogleSignIn() {
   return async (dispatch) => {
     dispatch(checkingCredentials())

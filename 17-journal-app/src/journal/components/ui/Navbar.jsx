@@ -1,8 +1,16 @@
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
 import { AppBar, Toolbar, Typography, IconButton } from '@mui/material'
 import { LogoutOutlined, Menu } from '@mui/icons-material'
+import { startLogout } from '@Store/auth'
 
 function Navbar({ drawerWidth }) {
+  const dispatch = useDispatch()
+
+  function handleLogout() {
+    dispatch(startLogout())
+  }
+
   return (
     <AppBar
       sx={{
@@ -24,7 +32,7 @@ function Navbar({ drawerWidth }) {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           JournalApp
         </Typography>
-        <IconButton color="inherit">
+        <IconButton color="inherit" onClick={handleLogout}>
           <LogoutOutlined />
         </IconButton>
       </Toolbar>

@@ -1,5 +1,6 @@
 import {
   loginWithEmailAndPassword,
+  logoutSesion,
   registerUserWithEmailAndPassword,
   signInWithGoogle,
 } from 'firebase/providers'
@@ -74,5 +75,12 @@ export function startLoginWithEmailAndPassword({ email, password }) {
         photoURL: null,
       })
     )
+  }
+}
+
+export function startLogout() {
+  return async (dispatch) => {
+    await logoutSesion()
+    dispatch(logout())
   }
 }

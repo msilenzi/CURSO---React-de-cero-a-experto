@@ -1,4 +1,5 @@
 import {
+  loginWithEmailAndPassword,
   registerUserWithEmailAndPassword,
   signInWithGoogle,
 } from 'firebase/providers'
@@ -24,15 +25,20 @@ export function startGoogleSignIn() {
   }
 }
 
-export function startCreatingUserWithEmailAndPassword(userData) {
+export function startCreatingUserWithEmailAndPassword({
+  firstName,
+  lastName,
+  email,
+  password,
+}) {
   return async (dispatch) => {
     dispatch(checkingCredentials())
 
-    const displayName = `${userData.firstName.trim()} ${userData.lastName.trim()}`
+    const displayName = `${firstName.trim()} ${lastName.trim()}`
 
     const { ok, uid, errorMessage } = await registerUserWithEmailAndPassword({
-      email: userData.email,
-      password: userData.password,
+      email,
+      password,
       displayName,
     })
 
@@ -41,7 +47,29 @@ export function startCreatingUserWithEmailAndPassword(userData) {
     dispatch(
       login({
         uid,
-        email: userData.email,
+        email,
+        displayName,
+        photoURL: null,
+      })
+    )
+  }
+}
+
+export function startLoginWithEmailAndPassword({ email, password }) {
+  return async (dispatch) => {
+    dispatch(checkingCredentials())
+    const { ok, uid, displayName, errorMessage } =
+      await loginWithEmailAndPassword({
+        email,
+        password,
+      })
+
+    if (!ok) return dispatch(logout({ errorMessage }))
+
+    dispatch(
+      login({
+        uid,
+        email,
         displayName,
         photoURL: null,
       })

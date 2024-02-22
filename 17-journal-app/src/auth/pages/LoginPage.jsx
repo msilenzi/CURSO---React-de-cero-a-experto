@@ -13,7 +13,7 @@ import { Google } from '@mui/icons-material'
 import { AuthLayout } from '@Auth/layout'
 import { PasswordField } from '@Auth/components'
 import { useForm } from '@Hooks'
-import { checkAuth, startGoogleSignIn } from '@Store/auth'
+import { startGoogleSignIn, startLoginWithEmailAndPassword } from '@Store/auth'
 import { isValidEmail, isValidPassword } from '@Auth/utils'
 
 const initialFormData = {
@@ -49,12 +49,7 @@ function LoginPage() {
   function handleSubmit(e) {
     e.preventDefault()
     if (!validateForm()) return
-
-    console.log(formState)
-
-    //! dispatch de la acción
-
-    dispatch(checkAuth())
+    dispatch(startLoginWithEmailAndPassword(formState))
   }
 
   function handleGoogleLogin() {

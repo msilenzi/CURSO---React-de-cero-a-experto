@@ -1,11 +1,19 @@
 import { useEffect, useMemo } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Alert, Button, Link, Stack, TextField, Typography } from '@mui/material'
+import {
+  Alert,
+  Button,
+  Link,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
 import { Google } from '@mui/icons-material'
 import { useForm } from '@Hooks'
 import { AuthLayout } from '@Auth/layout'
 import { PasswordField, PasswordStrength } from '@Auth/components'
+import { isValidEmail, isValidPassword } from '@Auth/utils'
 import { startCreatingUserWithEmailAndPassword } from '@Store/auth'
 
 import './RegisterPage.css'
@@ -28,11 +36,11 @@ const initialFormValidations = {
     message: 'Last name is required',
   },
   email: {
-    validator: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+    validator: isValidEmail,
     message: 'Invalid email address.',
   },
   password: {
-    validator: (value) => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(value),
+    validator: isValidPassword,
     message: 'Invalid password',
   },
   confirmPassword: {
@@ -157,8 +165,18 @@ function RegisterPage() {
               error={formErrors.confirmPassword !== null}
               helperText={formErrors.confirmPassword}
             />
-            <Alert severity='error' sx={{display: !errorMessage ? 'none' : '' }}>{errorMessage}</Alert>
-            <Button variant="contained" size="large" type="submit" disabled={isCheckingAuthentication}>
+            <Alert
+              severity="error"
+              sx={{ display: !errorMessage ? 'none' : '' }}
+            >
+              {errorMessage}
+            </Alert>
+            <Button
+              variant="contained"
+              size="large"
+              type="submit"
+              disabled={isCheckingAuthentication}
+            >
               Sign up
             </Button>
           </Stack>

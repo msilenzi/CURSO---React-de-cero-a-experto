@@ -34,8 +34,8 @@ function Sidebar({ drawerWidth }) {
         </Toolbar>
         <Divider sx={{ mt: '-1px' }} />
         <List>
-          {notes.map(({ id, date, title }) => (
-            <SidebarItem key={id} title={title} date={date} />
+          {notes.map((note) => (
+            <SidebarItem key={note.id} note={note} />
           ))}
         </List>
       </Drawer>

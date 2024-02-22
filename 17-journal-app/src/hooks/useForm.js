@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 function initFormErrors(formValidations) {
   if (!formValidations) return null
@@ -18,6 +18,10 @@ function useForm(initialFormData, initialFormValidations) {
     initFormErrors(initialFormValidations)
   )
   const [formValidations, setFormValidations] = useState(initialFormValidations)
+
+  useEffect(() => {
+    setFormState(initialFormData)
+  }, [initialFormData])
 
   function validate(field, value) {
     const { validator, message } = formValidations[field]

@@ -2,23 +2,14 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 
-// Redux
-import { useSelector } from 'react-redux'
-
 // MUI
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
-import Drawer from '@mui/material/Drawer'
-import List from '@mui/material/List'
-import Typography from '@mui/material/Typography'
-import Divider from '@mui/material/Divider'
-import IconButton from '@mui/material/IconButton'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 
 // Custom code
-import SidebarItem from '@Journal/components/ui/SidebarItem'
-import { Navbar } from '@Journal/components/ui'
 import { DRAWER_WIDTH_PX } from '@Journal/constants'
+import { Navbar, Sidebar } from '@Journal/components/ui'
+import { DrawerHeader } from '@Journal/components/styled'
 
 function JournalLayout({ children }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -47,62 +38,6 @@ JournalLayout.propTypes = {
 }
 
 export default JournalLayout
-
-//
-//#region Sidebar
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: 'space-between',
-}))
-
-function Sidebar({ isDrawerOpen, closeDrawer }) {
-  const { displayName } = useSelector((state) => state.auth)
-  const { notes } = useSelector((state) => state.journal)
-
-  return (
-    <Drawer
-      sx={{
-        width: DRAWER_WIDTH_PX,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
-          width: DRAWER_WIDTH_PX,
-          boxSizing: 'border-box',
-        },
-      }}
-      variant="persistent"
-      anchor="left"
-      open={isDrawerOpen}
-    >
-      <DrawerHeader>
-        <Typography variant="h6" noWrap sx={{ml: 1}}>
-          {displayName}
-        </Typography>
-        <IconButton onClick={closeDrawer}>
-          <ChevronLeftIcon />
-        </IconButton>
-      </DrawerHeader>
-      <Divider />
-      <List>
-        {notes.map((note) => (
-          <SidebarItem key={note.id} note={note} />
-        ))}
-      </List>
-    </Drawer>
-  )
-}
-
-Sidebar.propTypes = {
-  isDrawerOpen: PropTypes.bool.isRequired,
-  closeDrawer: PropTypes.func.isRequired,
-}
-
-//#endregion
-//
 
 //
 //#region JournalLayoutWrapper

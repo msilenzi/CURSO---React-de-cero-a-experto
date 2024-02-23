@@ -1,50 +1,58 @@
-import { Box, Divider, Drawer, List, Toolbar, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
-import SidebarItem from './SidebarItem'
 
-function Sidebar({ drawerWidth }) {
+import { useSelector } from 'react-redux'
+
+import Drawer from '@mui/material/Drawer'
+import List from '@mui/material/List'
+import Typography from '@mui/material/Typography'
+import Divider from '@mui/material/Divider'
+import IconButton from '@mui/material/IconButton'
+
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+
+import { DRAWER_WIDTH_PX } from '@Journal/constants'
+import SidebarItem from './SidebarItem'
+import { DrawerHeader } from '../styled'
+
+function Sidebar({ isDrawerOpen, closeDrawer }) {
   const { displayName } = useSelector((state) => state.auth)
   const { notes } = useSelector((state) => state.journal)
 
   return (
-    <Box
-      component="nav"
+    <Drawer
       sx={{
-        width: { sm: drawerWidth },
-        flexShrink: { sm: 0 },
-        display: { xs: 'none', md: 'inherit' },
+        width: DRAWER_WIDTH_PX,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: DRAWER_WIDTH_PX,
+          boxSizing: 'border-box',
+        },
       }}
+      variant="persistent"
+      anchor="left"
+      open={isDrawerOpen}
     >
-      <Drawer
-        variant="permanent"
-        open
-        sx={{
-          display: { xs: 'block' },
-          '& .MuiDrawer-paper': {
-            boxSizing: 'border-box',
-            width: drawerWidth,
-          },
-        }}
-      >
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            {displayName}
-          </Typography>
-        </Toolbar>
-        <Divider sx={{ mt: '-1px' }} />
-        <List>
-          {notes.map((note) => (
-            <SidebarItem key={note.id} note={note} />
-          ))}
-        </List>
-      </Drawer>
-    </Box>
+      <DrawerHeader>
+        <Typography variant="h6" noWrap sx={{ ml: 1 }}>
+          {displayName}
+        </Typography>
+        <IconButton onClick={closeDrawer}>
+          <ChevronLeftIcon />
+        </IconButton>
+      </DrawerHeader>
+      <Divider />
+      <List>
+        {notes.map((note) => (
+          <SidebarItem key={note.id} note={note} />
+        ))}
+      </List>
+    </Drawer>
   )
 }
 
 Sidebar.propTypes = {
-  drawerWidth: PropTypes.number.isRequired,
+  isDrawerOpen: PropTypes.bool.isRequired,
+  closeDrawer: PropTypes.func.isRequired,
 }
 
 export default Sidebar

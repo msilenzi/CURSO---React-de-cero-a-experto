@@ -1,20 +1,30 @@
+import { useEffect, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Save } from '@mui/icons-material'
 import { Button, Grid, Stack, TextField, Typography } from '@mui/material'
 import { ImageGallery } from '@Journal/components'
 import { timestampToString } from '@Journal/utils'
 import { useForm } from '@Hooks'
-import { useSelector } from 'react-redux'
-import { useMemo } from 'react'
+import { setActiveNote, startSavingNote } from '@Store/journal'
 
 function NoteView() {
-  const { activeNote } = useSelector((state) => state.journal)
+  const { activeNote, isSaving } = useSelector((state) => state.journal)
+  const dispatch = useDispatch()
 
-  const { formState } = useForm(activeNote)
+  const { formState, handleInputChange } = useForm(activeNote)
+
+  useEffect(() => {
+    dispatch(setActiveNote(formState))
+  }, [dispatch, formState])
 
   const dateString = useMemo(
     () => timestampToString(formState.date),
     [formState.date]
   )
+
+  function handleSave() {
+    dispatch(startSavingNote())
+  }
 
   return (
     <Stack spacing={3} sx={{ width: '100%', maxWidth: '720px', m: '0 auto' }}>
@@ -27,7 +37,12 @@ function NoteView() {
         <Typography variant="h6" fontWeight={300}>
           {dateString}
         </Typography>
-        <Button variant="text" startIcon={<Save />}>
+        <Button
+          variant="text"
+          startIcon={<Save />}
+          onClick={handleSave}
+          disabled={isSaving}
+        >
           Save
         </Button>
       </Grid>
@@ -39,6 +54,7 @@ function NoteView() {
         name="title"
         label="Title"
         value={formState.title}
+        onChange={handleInputChange}
       />
       <TextField
         autoComplete="off"
@@ -50,6 +66,7 @@ function NoteView() {
         multiline
         minRows={5}
         value={formState.body}
+        onChange={handleInputChange}
       />
       <ImageGallery />
     </Stack>

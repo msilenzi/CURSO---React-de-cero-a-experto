@@ -4,7 +4,11 @@ import { DRAWER_WIDTH_PX } from '@Journal/constants'
 const MainWrapper = styled('main', {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
+  display: 'flex',
+  flexDirection: 'column',
   flexGrow: 1,
+  minHeight: '100vh',
+  maxWidth: '100%',
   padding: theme.spacing(3),
   transition: theme.transitions.create('margin', {
     easing: theme.transitions.easing.sharp,
@@ -17,6 +21,7 @@ const MainWrapper = styled('main', {
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginLeft: 0,
+    maxWidth: `calc(100% - ${DRAWER_WIDTH_PX}px)`
   }),
 }))
 

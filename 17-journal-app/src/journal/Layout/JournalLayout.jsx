@@ -7,19 +7,29 @@ import { JournalLayoutWrapper, Navbar, Sidebar } from '@Journal/components/ui'
 
 function JournalLayout({ children }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-
-  function openDrawer() {
-    setIsDrawerOpen(true)
-  }
+  const [isClosing, setIsClosing] = useState(false)
 
   function closeDrawer() {
+    setIsClosing(true)
     setIsDrawerOpen(false)
+  }
+
+  function toggleDrawer() {
+    if (!isClosing) setIsDrawerOpen(!isDrawerOpen)
+  }
+
+  function handleDrawerTransitionEnd() {
+    setIsClosing(false)
   }
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <Navbar isDrawerOpen={isDrawerOpen} openDrawer={openDrawer} />
-      <Sidebar isDrawerOpen={isDrawerOpen} closeDrawer={closeDrawer} />
+      <Navbar isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
+      <Sidebar
+        isDrawerOpen={isDrawerOpen}
+        closeDrawer={closeDrawer}
+        handleDrawerTransitionEnd={handleDrawerTransitionEnd}
+      />
       <JournalLayoutWrapper isDrawerOpen={isDrawerOpen}>
         {children}
       </JournalLayoutWrapper>

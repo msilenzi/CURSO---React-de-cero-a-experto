@@ -14,8 +14,9 @@ const MainWrapper = styled('main', {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  marginLeft: `-${DRAWER_WIDTH_PX}px`,
+  ml: 0,
   [theme.breakpoints.up(DRAWER_BP)]: {
+    marginLeft: `-${DRAWER_WIDTH_PX}px`,
     ...(open && {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,

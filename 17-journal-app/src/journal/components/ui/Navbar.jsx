@@ -13,7 +13,7 @@ import { startLogout } from '@Store/auth'
 
 import { AppBar } from '../styled'
 
-function Navbar({ isDrawerOpen, openDrawer }) {
+function Navbar({ isDrawerOpen, toggleDrawer }) {
   const dispatch = useDispatch()
 
   function handleLogout() {
@@ -26,7 +26,7 @@ function Navbar({ isDrawerOpen, openDrawer }) {
         <IconButton
           color="inherit"
           aria-label="open drawer"
-          onClick={openDrawer}
+          onClick={toggleDrawer}
           edge="start"
           sx={{ mr: 2, ...(isDrawerOpen && { display: 'none' }) }}
         >
@@ -45,7 +45,7 @@ function Navbar({ isDrawerOpen, openDrawer }) {
 
 Navbar.propTypes = {
   isDrawerOpen: PropTypes.bool.isRequired,
-  openDrawer: PropTypes.func.isRequired,
+  toggleDrawer: PropTypes.func.isRequired,
 }
 
 export default Navbar

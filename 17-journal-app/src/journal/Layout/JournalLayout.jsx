@@ -3,27 +3,22 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 
 // Redux
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 // MUI
 import { styled } from '@mui/material/styles'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
-import MuiAppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
 import List from '@mui/material/List'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 
 // Custom code
-import { startLogout } from '@Store/auth'
 import SidebarItem from '@Journal/components/ui/SidebarItem'
-
-const drawerWidthPx = 240
+import { Navbar } from '@Journal/components/ui'
+import { DRAWER_WIDTH_PX } from '@Journal/constants'
 
 function JournalLayout({ children }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -54,64 +49,6 @@ JournalLayout.propTypes = {
 export default JournalLayout
 
 //
-//#region Navbar
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  transition: theme.transitions.create(['margin', 'width'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    width: `calc(100% - ${drawerWidthPx}px)`,
-    marginLeft: `${drawerWidthPx}px`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}))
-
-function Navbar({ isDrawerOpen, openDrawer }) {
-  const dispatch = useDispatch()
-
-  function handleLogout() {
-    dispatch(startLogout())
-  }
-
-  return (
-    <AppBar position="fixed" open={isDrawerOpen}>
-      <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={openDrawer}
-          edge="start"
-          sx={{ mr: 2, ...(isDrawerOpen && { display: 'none' }) }}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          JournalApp
-        </Typography>
-        <IconButton color="inherit" onClick={handleLogout}>
-          <LogoutOutlinedIcon />
-        </IconButton>
-      </Toolbar>
-    </AppBar>
-  )
-}
-
-Navbar.propTypes = {
-  isDrawerOpen: PropTypes.bool.isRequired,
-  openDrawer: PropTypes.func.isRequired,
-}
-
-//#endregion
-//
-
-//
 //#region Sidebar
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -130,10 +67,10 @@ function Sidebar({ isDrawerOpen, closeDrawer }) {
   return (
     <Drawer
       sx={{
-        width: drawerWidthPx,
+        width: DRAWER_WIDTH_PX,
         flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: drawerWidthPx,
+          width: DRAWER_WIDTH_PX,
           boxSizing: 'border-box',
         },
       }}
@@ -178,7 +115,7 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: `-${drawerWidthPx}px`,
+    marginLeft: `-${DRAWER_WIDTH_PX}px`,
     ...(open && {
       transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,

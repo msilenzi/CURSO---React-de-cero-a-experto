@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { AddOutlined } from '@mui/icons-material'
-import { IconButton } from '@mui/material'
+import { Fab } from '@mui/material'
 import { JournalLayout } from '@Journal/Layout'
 import { NoteView, NothingSelectedView } from '@Journal/views'
 import { startNewNote } from '@Store/journal'
@@ -28,25 +28,18 @@ function NewEntryBtn() {
   }
 
   return (
-    <IconButton
-      size="large"
+    <Fab
+      color="error"
       sx={{
         position: 'fixed',
         right: 16,
         bottom: 16,
-        color: 'white',
-        bgcolor: 'error.main',
-        ':hover': { bgcolor: 'error.light' },
-        ':disabled': {
-          color: 'white',
-          bgcolor: 'error.dark',
-        },
       }}
       disabled={isSaving}
       onClick={handleClick}
     >
-      <AddOutlined sx={{ fontSize: 28 }} />
-    </IconButton>
+      <AddOutlined />
+    </Fab>
   )
 }
 

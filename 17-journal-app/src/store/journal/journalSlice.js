@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   isSaving: false,
-  savedMessage: '',
   notes: [],
   activeNote: null,
 }
@@ -31,8 +30,6 @@ export const journalSlice = createSlice({
       state.notes = action.payload
     },
 
-    setSaving: (state) => {},
-
     updateNote: (state, action) => {
       const noteIndex = state.notes.findIndex(
         ({ id }) => id === action.payload.id
@@ -50,7 +47,6 @@ export const {
   addNewEmptyNote,
   setActiveNote,
   setNotes,
-  setSaving,
   updateNote,
   deleteNoteById,
 } = journalSlice.actions

@@ -1,3 +1,2 @@
-import ImageGallery from './ImageGallery'
-
-export { ImageGallery }
+export { default as ImageGallery } from './ImageGallery'
+export { default as SnackbarSave } from './SnackbarSave'

@@ -27,10 +27,7 @@ function AuthLayout({ title, children }) {
 }
 
 AuthLayout.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+  children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
 }
 

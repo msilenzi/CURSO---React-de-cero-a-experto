@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Save } from '@mui/icons-material'
 import { Button, Grid, Stack, TextField, Typography } from '@mui/material'
-import { ImageGallery, SnackbarSave } from '@Journal/components'
+import { ImageGallery, ImageInput, SnackbarSave } from '@Journal/components'
 import { timestampToString } from '@Journal/utils'
 import { useForm } from '@Hooks'
 import { setActiveNote, startSavingNote } from '@Store/journal'
@@ -68,7 +68,7 @@ function NoteView() {
         value={formState.body}
         onChange={handleInputChange}
       />
-      <ImageGallery />
+      <ImageGallery height='250px' />
 
       <SnackbarSave />
     </Stack>

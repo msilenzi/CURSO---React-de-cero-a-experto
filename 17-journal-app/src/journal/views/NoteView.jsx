@@ -68,7 +68,7 @@ function NoteView() {
         value={formState.body}
         onChange={handleInputChange}
       />
-      <ImageGallery height='250px' />
+      <ImageGallery height='200px' />
       <ImageInput />
 
       <SnackbarSave />

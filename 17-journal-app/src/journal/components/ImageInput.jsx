@@ -35,11 +35,11 @@ function ImageInput() {
             height="150px"
             images={images.map((image) => ({
               src: URL.createObjectURL(image),
-              alt: image.name,
+              title: image.name,
             }))}
           />
         )}
-                <Button
+        <Button
           variant="outlined"
           color="primary"
           fullWidth

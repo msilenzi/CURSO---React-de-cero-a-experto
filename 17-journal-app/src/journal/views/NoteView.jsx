@@ -69,6 +69,7 @@ function NoteView() {
         onChange={handleInputChange}
       />
       <ImageGallery height='250px' />
+      <ImageInput />
 
       <SnackbarSave />
     </Stack>

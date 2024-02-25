@@ -2,7 +2,13 @@ import PropTypes from 'prop-types'
 import ImageList from '@mui/material/ImageList'
 import ImageGalleryItem from './ImageGalleryItem'
 
-function ImageGallery({ images = itemData, height }) {
+function ImageGallery({
+  images = itemData,
+  height,
+  handleTitleChange,
+  handleDelete,
+  handleImageClick,
+}) {
   return (
     <ImageList
       sx={{
@@ -13,7 +19,13 @@ function ImageGallery({ images = itemData, height }) {
       }}
     >
       {images.map((image) => (
-        <ImageGalleryItem key={image.src} {...image} />
+        <ImageGalleryItem
+          key={image.src}
+          {...image}
+          onTitleChange={(e) => handleTitleChange(image, e.target.value)}
+          onDelete={() => handleDelete(image)}
+          onImageClick={() => handleImageClick(image)}
+        />
       ))}
     </ImageList>
   )
@@ -27,6 +39,9 @@ ImageGallery.propTypes = {
     })
   ),
   height: PropTypes.string.isRequired,
+  handleTitleChange: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  handleImageClick: PropTypes.func.isRequired,
 }
 
 export default ImageGallery

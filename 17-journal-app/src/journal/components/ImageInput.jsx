@@ -16,13 +16,36 @@ function ImageInput() {
 
   const [images, setImages] = useState([])
 
-  function handleFileInputChange(e) {
-    if (e.target.files === 0) return
+  function handleDelete(image) {
+    URL.revokeObjectURL(image.src)
+    setImages(images.filter((img) => img !== image))
+  }
+
+  function handleImageClick(image) {
+    window.open(image.src, '_blank')
+  }
+
+  function handleTitleChange(image, value) {
     setImages(
-      Array.from(e.target.files).filter((image) =>
-        image.type.includes('image/')
-      )
+      images.map((img) => {
+        if (img.src !== image.src) return img
+        return { ...img, title: value }
+      })
     )
+  }
+
+  function handleFileInputChange(e) {
+    if (e.target.files.length === 0) return
+
+    const newImages = Array.from(e.target.files)
+      .filter((imageFile) => imageFile.type.includes('image/'))
+      .map((imageFile) => ({
+        file: imageFile,
+        src: URL.createObjectURL(imageFile),
+        title: imageFile.name,
+      }))
+
+    setImages((prev) => [...newImages, ...prev])
   }
 
   return (
@@ -33,10 +56,10 @@ function ImageInput() {
         ) : (
           <ImageGallery
             height="150px"
-            images={images.map((image) => ({
-              src: URL.createObjectURL(image),
-              title: image.name,
-            }))}
+            images={images}
+            handleDelete={handleDelete}
+            handleImageClick={handleImageClick}
+            handleTitleChange={handleTitleChange}
           />
         )}
         <Button

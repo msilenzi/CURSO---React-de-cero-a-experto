@@ -26,6 +26,18 @@ function NoteView() {
     dispatch(startSavingNote())
   }
 
+  function handleDelete(image) {
+    console.log(image)
+  }
+
+  function handleImageClick(image) {
+    window.open(image.src, '_blank')
+  }
+
+  function handleTitleChange(image, value) {
+    console.log({image, value})
+  }
+
   return (
     <Stack spacing={3} sx={{ width: '100%', maxWidth: '720px', m: '0 auto' }}>
       <Grid
@@ -68,7 +80,12 @@ function NoteView() {
         value={formState.body}
         onChange={handleInputChange}
       />
-      <ImageGallery height='200px' />
+      <ImageGallery
+        height="200px"
+        handleDelete={handleDelete}
+        handleImageClick={handleImageClick}
+        handleTitleChange={handleTitleChange}
+      />
       <ImageInput />
 
       <SnackbarSave />

@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import Button from '@mui/material/Button'
 import Paper from '@mui/material/Paper'
@@ -10,15 +10,23 @@ import Typography from '@mui/material/Typography'
 import AttachFileIcon from '@mui/icons-material/AttachFile'
 import ImageGallery from './ImageGallery'
 
+import {
+  addUnsavedImages,
+  deleteUnsavedImage,
+  renameUnsavedImage,
+  selectActiveNoteUnsavedImages,
+} from '@Store/journal'
+
 function ImageInput() {
   const { isSaving } = useSelector((state) => state.journal)
-  const fileInputRef = useRef(null)
+  const images = useSelector(selectActiveNoteUnsavedImages)
+  const dispatch = useDispatch()
 
-  const [images, setImages] = useState([])
+  const fileInputRef = useRef(null)
 
   function handleDelete(image) {
     URL.revokeObjectURL(image.src)
-    setImages(images.filter((img) => img !== image))
+    dispatch(deleteUnsavedImage(image))
   }
 
   function handleImageClick(image) {
@@ -26,12 +34,7 @@ function ImageInput() {
   }
 
   function handleTitleChange(image, value) {
-    setImages(
-      images.map((img) => {
-        if (img.src !== image.src) return img
-        return { ...img, title: value }
-      })
-    )
+    dispatch(renameUnsavedImage({ image, value }))
   }
 
   function handleFileInputChange(e) {
@@ -40,12 +43,11 @@ function ImageInput() {
     const newImages = Array.from(e.target.files)
       .filter((imageFile) => imageFile.type.includes('image/'))
       .map((imageFile) => ({
-        file: imageFile,
         src: URL.createObjectURL(imageFile),
         title: imageFile.name,
       }))
 
-    setImages((prev) => [...newImages, ...prev])
+    dispatch(addUnsavedImages(newImages))
   }
 
   return (

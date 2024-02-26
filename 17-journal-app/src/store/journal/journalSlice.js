@@ -76,6 +76,29 @@ export const journalSlice = createSlice({
       state.unsavedNotes[action.payload.id].note = action.payload
     },
 
+    addUnsavedImages: (state, action) => {
+      state.unsavedNotes[state.activeNoteId].unsavedImages = state.unsavedNotes[
+        state.activeNoteId
+      ].unsavedImages.concat(action.payload)
+    },
+
+    deleteUnsavedImage: (state, action) => {
+      state.unsavedNotes[state.activeNoteId].unsavedImages = state.unsavedNotes[
+        state.activeNoteId
+      ].unsavedImages.filter((image) => image.src !== action.payload.src)
+    },
+
+    renameUnsavedImage: (state, action) => {
+      const { image, value } = action.payload
+
+      const unsavedImages = state.unsavedNotes[state.activeNoteId].unsavedImages
+      const imageToUpdate = unsavedImages.find((img) => img.src === image.src)
+
+      if (imageToUpdate) {
+        imageToUpdate.title = value
+      }
+    },
+
     setNotes: (state, action) => {
       state.notes = action.payload
     },
@@ -99,5 +122,8 @@ export const {
   setNotes,
   updateNote,
   deleteNoteById,
-  updateActiveNote
+  updateActiveNote,
+  deleteUnsavedImage,
+  addUnsavedImages,
+  renameUnsavedImage
 } = journalSlice.actions

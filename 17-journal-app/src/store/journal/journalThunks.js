@@ -9,6 +9,7 @@ import {
   updateNote,
 } from './journalSlice'
 import { loadNotes } from '@Journal/utils'
+import { selectActiveNote } from './journalSelectors'
 
 export function startNewNote() {
   return async (dispatch, getState) => {
@@ -47,7 +48,7 @@ export function startSavingNote() {
     dispatch(startSaving())
 
     const { uid } = getState().auth
-    const { activeNote } = getState().journal
+    const activeNote = selectActiveNote(getState())
 
     const newNote = { ...activeNote }
     delete newNote.id

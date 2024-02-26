@@ -5,16 +5,22 @@ import { Button, Grid, Stack, TextField, Typography } from '@mui/material'
 import { ImageGallery, ImageInput, SnackbarSave } from '@Journal/components'
 import { timestampToString } from '@Journal/utils'
 import { useForm } from '@Hooks'
-import { setActiveNote, startSavingNote } from '@Store/journal'
+import {
+  selectActiveNote,
+  startSavingNote,
+  updateActiveNote,
+} from '@Store/journal'
 
 function NoteView() {
-  const { activeNote, isSaving } = useSelector((state) => state.journal)
+  const { isSaving } = useSelector((state) => state.journal)
+  const currentNote = useSelector(selectActiveNote)
+
   const dispatch = useDispatch()
 
-  const { formState, handleInputChange } = useForm(activeNote)
+  const { formState, handleInputChange } = useForm(currentNote)
 
   useEffect(() => {
-    dispatch(setActiveNote(formState))
+    dispatch(updateActiveNote(formState))
   }, [dispatch, formState])
 
   const dateString = useMemo(
@@ -35,7 +41,7 @@ function NoteView() {
   }
 
   function handleTitleChange(image, value) {
-    console.log({image, value})
+    console.log({ image, value })
   }
 
   return (

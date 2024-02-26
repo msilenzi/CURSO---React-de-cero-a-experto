@@ -6,12 +6,12 @@ import { NoteView, NothingSelectedView } from '@Journal/views'
 import { startNewNote } from '@Store/journal'
 
 function JournalPage() {
-  const { activeNote } = useSelector((state) => state.journal)
+  const { activeNoteId } = useSelector((state) => state.journal)
 
   return (
     <>
       <JournalLayout>
-        {activeNote == null ? <NothingSelectedView /> : <NoteView />}
+        {activeNoteId == null ? <NothingSelectedView /> : <NoteView />}
       </JournalLayout>
       <NewEntryBtn />
     </>

@@ -2,14 +2,19 @@ import { firebaseDB } from 'firebase/config'
 import { collection, doc, setDoc } from 'firebase/firestore/lite'
 import {
   addNewEmptyNote,
+  clearUnsavedImages,
   finishSaving,
   setActiveNote,
   setNotes,
   startSaving,
+  updateActiveNote,
   updateNote,
 } from './journalSlice'
-import { loadNotes } from '@Journal/utils'
-import { selectActiveNote } from './journalSelectors'
+import { loadNotes, uploadUnsavedImages } from '@Journal/utils'
+import {
+  selectActiveNote,
+  selectActiveNoteUnsavedImages,
+} from './journalSelectors'
 
 export function startNewNote() {
   return async (dispatch, getState) => {
@@ -50,14 +55,20 @@ export function startSavingNote() {
 
     const { uid } = getState().auth
     const activeNote = selectActiveNote(getState())
+    const unsavedImages = selectActiveNoteUnsavedImages(getState())
+
+    const images = await uploadUnsavedImages(unsavedImages)
 
     const newNote = { ...activeNote }
+    newNote.images = newNote.images.concat(images)
     delete newNote.id
 
     const docRef = doc(firebaseDB, `${uid}/journal/notes/${activeNote.id}/`)
     await setDoc(docRef, newNote, { merge: true })
 
     dispatch(updateNote(activeNote))
+    dispatch(updateActiveNote({ id: activeNote.id, ...newNote }))
+    dispatch(clearUnsavedImages())
     dispatch(finishSaving())
   }
 }

@@ -100,6 +100,10 @@ export const journalSlice = createSlice({
       }
     },
 
+    clearUnsavedImages: (state) => {
+      state.unsavedNotes[state.activeNoteId].unsavedImages = []
+    },
+
     setNotes: (state, action) => {
       state.notes = action.payload
     },
@@ -126,5 +130,6 @@ export const {
   updateActiveNote,
   deleteUnsavedImage,
   addUnsavedImages,
-  renameUnsavedImage
+  renameUnsavedImage,
+  clearUnsavedImages,
 } = journalSlice.actions

@@ -1,5 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+/**
+ * Represents a note in the journal.
+ * @typedef {Object} JournalNote
+ * @property {string} id - The ID of the note.
+ * @property {number} date - The date of the note (in milliseconds since January 1, 1970).
+ * @property {string} title - The title of the note.
+ * @property {string} body - The body content of the note.
+ */
+
+/**
+ * Represents an unsaved image associated with a note.
+ * @typedef {Object} UnsavedImage
+ * @property {string} src - The URL of the unsaved image.
+ * @property {string} title - The title of the image.
+ */
+
+/**
+ * Represents an unsaved note with associated images.
+ * @typedef {Object} UnsavedNote
+ * @property {JournalNote} note - The unsaved note.
+ * @property {UnsavedImage[]} unsavedImages - The array of unsaved images associated with the note.
+ */
+
+/**
+ * Initial state for the journal slice.
+ * @typedef {Object} JournalInitialState
+ * @property {boolean} isSaving - Indicates whether changes are being saved.
+ * @property {JournalNote[]} notes - The list of notes.
+ * @property {string|null} activeNoteId - The ID of the active note.
+ * @property {Object.<string, UnsavedNote>} unsavedNotes - Unsaved notes, indexed by note ID.
+ */
+
+/** @type {JournalInitialState} */
 const initialState = {
   isSaving: false,
   notes: [],
@@ -34,7 +67,7 @@ export const journalSlice = createSlice({
       ) {
         state.unsavedNotes[action.payload.id] = {
           note: action.payload,
-          unsavedImages: []
+          unsavedImages: [],
         }
       }
     },

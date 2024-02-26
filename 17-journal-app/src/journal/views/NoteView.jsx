@@ -88,6 +88,7 @@ function NoteView() {
       />
       <ImageGallery
         height="200px"
+        images={currentNote.images}
         handleDelete={handleDelete}
         handleImageClick={handleImageClick}
         handleTitleChange={handleTitleChange}

@@ -20,6 +20,7 @@ export function startNewNote() {
       title: '',
       body: '',
       date: Date.now(),
+      images: [],
     }
 
     const newDoc = doc(collection(firebaseDB, `${uid}/journal/notes`))

@@ -33,6 +33,12 @@ SidebarItem.propTypes = {
     date: PropTypes.number.isRequired,
     body: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    images: PropTypes.arrayOf(
+      PropTypes.exact({
+        src: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+      })
+    ).isRequired,
   }),
 }
 

@@ -1,19 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 /**
+ * Represents an image associated with a note.
+ * @typedef {Object} Image
+ * @property {string} src - The URL of the image.
+ * @property {string} title - The title of the image.
+ */
+
+/**
  * Represents a note in the journal.
  * @typedef {Object} JournalNote
  * @property {string} id - The ID of the note.
  * @property {number} date - The date of the note (in milliseconds since January 1, 1970).
  * @property {string} title - The title of the note.
  * @property {string} body - The body content of the note.
- */
-
-/**
- * Represents an unsaved image associated with a note.
- * @typedef {Object} UnsavedImage
- * @property {string} src - The URL of the unsaved image.
- * @property {string} title - The title of the image.
+ * @property {Image[]} images - The array of images associated with the note.
  */
 
 /**

@@ -21,7 +21,7 @@ import { createSlice } from '@reduxjs/toolkit'
  * Represents an unsaved note with associated images.
  * @typedef {Object} UnsavedNote
  * @property {JournalNote} note - The unsaved note.
- * @property {UnsavedImage[]} unsavedImages - The array of unsaved images associated with the note.
+ * @property {Image[]} unsavedImages - The array of unsaved images associated with the note.
  */
 
 /**
@@ -115,6 +115,23 @@ export const journalSlice = createSlice({
       state.notes[noteIndex] = action.payload
     },
 
+    renameSavedImage: (state, action) => {
+      const { image, value } = action.payload
+
+      const savedImages = state.unsavedNotes[state.activeNoteId].note.images
+      const imageToUpdate = savedImages.find((img) => img.src === image.src)
+
+      if (imageToUpdate) {
+        imageToUpdate.title = value
+      }
+    },
+
+    deleteSavedImage: (state, action) => {
+      state.unsavedNotes[state.activeNoteId].note.images = state.unsavedNotes[
+        state.activeNoteId
+      ].note.images.filter((image) => image.src !== action.payload.src)
+    },
+
     deleteNoteById: (state, action) => {},
   },
 })
@@ -132,4 +149,6 @@ export const {
   addUnsavedImages,
   renameUnsavedImage,
   clearUnsavedImages,
+  deleteSavedImage,
+  renameSavedImage,
 } = journalSlice.actions

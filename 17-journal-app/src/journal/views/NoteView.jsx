@@ -6,6 +6,8 @@ import { ImageGallery, ImageInput, SnackbarSave } from '@Journal/components'
 import { timestampToString } from '@Journal/utils'
 import { useForm } from '@Hooks'
 import {
+  deleteSavedImage,
+  renameSavedImage,
   selectActiveNote,
   startSavingNote,
   updateActiveNote,
@@ -33,7 +35,7 @@ function NoteView() {
   }
 
   function handleDelete(image) {
-    console.log(image)
+    dispatch(deleteSavedImage(image))
   }
 
   function handleImageClick(image) {
@@ -41,7 +43,7 @@ function NoteView() {
   }
 
   function handleTitleChange(image, value) {
-    console.log({ image, value })
+    dispatch(renameSavedImage({image, value}))
   }
 
   return (

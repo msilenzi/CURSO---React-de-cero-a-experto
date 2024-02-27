@@ -10,6 +10,7 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import MenuIcon from '@mui/icons-material/Menu'
 
 import { startLogout } from '@Store/auth'
+import { clearJournalState } from '@Store/journal'
 
 import { AppBar } from '../styled'
 
@@ -18,6 +19,7 @@ function Navbar({ isDrawerOpen, toggleDrawer }) {
 
   function handleLogout() {
     dispatch(startLogout())
+    dispatch(clearJournalState())
   }
 
   return (

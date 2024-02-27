@@ -133,6 +133,13 @@ export const journalSlice = createSlice({
     },
 
     deleteNoteById: (state, action) => {},
+
+    clearJournalState: (state) => {
+      state.activeNoteId = initialState.activeNoteId
+      state.isSaving = initialState.isSaving
+      state.notes = initialState.notes
+      state.unsavedNotes = initialState.unsavedNotes
+    }
   },
 })
 
@@ -151,4 +158,5 @@ export const {
   clearUnsavedImages,
   deleteSavedImage,
   renameSavedImage,
+  clearJournalState,
 } = journalSlice.actions

@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Save } from '@mui/icons-material'
+import { Delete, Save } from '@mui/icons-material'
 import { Button, Grid, Stack, TextField, Typography } from '@mui/material'
 import { ImageGallery, ImageInput, SnackbarSave } from '@Journal/components'
 import { timestampToString } from '@Journal/utils'
@@ -9,6 +9,7 @@ import {
   deleteSavedImage,
   renameSavedImage,
   selectActiveNote,
+  startDeletingNote,
   startSavingNote,
   updateActiveNote,
 } from '@Store/journal'
@@ -30,11 +31,15 @@ function NoteView() {
     [formState.date]
   )
 
-  function handleSave() {
+  function handleNoteSave() {
     dispatch(startSavingNote())
   }
 
-  function handleDelete(image) {
+  function handleNoteDelete() {
+    dispatch(startDeletingNote())
+  }
+
+  function handleImageDelete(image) {
     dispatch(deleteSavedImage(image))
   }
 
@@ -42,8 +47,8 @@ function NoteView() {
     window.open(image.src, '_blank')
   }
 
-  function handleTitleChange(image, value) {
-    dispatch(renameSavedImage({image, value}))
+  function handleImageTitleChange(image, value) {
+    dispatch(renameSavedImage({ image, value }))
   }
 
   return (
@@ -60,7 +65,7 @@ function NoteView() {
         <Button
           variant="text"
           startIcon={<Save />}
-          onClick={handleSave}
+          onClick={handleNoteSave}
           disabled={isSaving}
         >
           Save
@@ -91,11 +96,24 @@ function NoteView() {
       <ImageGallery
         height="200px"
         images={currentNote.images}
-        handleDelete={handleDelete}
+        handleDelete={handleImageDelete}
         handleImageClick={handleImageClick}
-        handleTitleChange={handleTitleChange}
+        handleTitleChange={handleImageTitleChange}
       />
       <ImageInput />
+
+      <Button
+        variant="text"
+        color="error"
+        startIcon={<Delete />}
+        onClick={handleNoteDelete}
+        disabled={isSaving}
+        sx={{
+          mr: 'auto!important',
+        }}
+      >
+        Delete note
+      </Button>
 
       <SnackbarSave />
     </Stack>

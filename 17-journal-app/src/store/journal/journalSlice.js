@@ -132,7 +132,13 @@ export const journalSlice = createSlice({
       ].note.images.filter((image) => image.src !== action.payload.src)
     },
 
-    deleteNoteById: (state, action) => {},
+    deleteNoteById: (state, action) => {
+      state.notes = state.notes.filter(note => note.id !== action.payload)
+      if (state.activeNoteId === action.payload) {
+        state.activeNoteId = initialState.activeNoteId
+      }
+      delete state.unsavedNotes[action.payload]
+    },
 
     clearJournalState: (state) => {
       state.activeNoteId = initialState.activeNoteId

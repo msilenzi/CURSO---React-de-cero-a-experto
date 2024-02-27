@@ -5,15 +5,24 @@
     "paths": {
       "@Auth": ["auth/index"],
       "@Auth/*": ["auth/*"],
-      
+
+      "@Components": ["components/index"],
+      "@Components/*": ["components/*"],
+
+      "@Hooks": ["hooks/index"],
+      "@Hooks/*": ["hooks/*"],
+
       "@Journal": ["journal/index"],
       "@Journal/*": ["journal/*"],
 
       "@Router": ["router/index"],
       "@Router/*": ["router/*"],
 
+      "@Store": ["store/index"],
+      "@Store/*": ["store/*"],
+
       "@Theme": ["theme/index"],
-      "@Theme/*": ["theme/*"],
+      "@Theme/*": ["theme/*"]
     }
   },
   "include": ["src"],

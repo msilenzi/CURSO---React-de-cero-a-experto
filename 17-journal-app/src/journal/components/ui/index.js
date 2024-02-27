@@ -1,4 +1,5 @@
-import Navbar from './Navbar'
-import Sidebar from './Sidebar'
-
-export { Navbar, Sidebar }
+export { default as JournalLayoutWrapper } from './JournalLayoutWrapper'
+export { default as Navbar } from './Navbar'
+export { default as Sidebar } from './Sidebar'
+export { default as SidebarItem } from './SidebarItem'
+export { default as SnackbarAlert } from './SnackbarAlert'

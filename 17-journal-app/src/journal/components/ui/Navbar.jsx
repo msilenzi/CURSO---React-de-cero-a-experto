@@ -1,31 +1,44 @@
 import PropTypes from 'prop-types'
-import { AppBar, Toolbar, Typography, IconButton } from '@mui/material'
-import { LogoutOutlined, Menu } from '@mui/icons-material'
 
-function Navbar({ drawerWidth }) {
+import { useDispatch } from 'react-redux'
+
+import IconButton from '@mui/material/IconButton'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
+import MenuIcon from '@mui/icons-material/Menu'
+
+import { startLogout } from '@Store/auth'
+import { clearJournalState } from '@Store/journal'
+
+import { AppBar } from '../styled'
+
+function Navbar({ isDrawerOpen, toggleDrawer }) {
+  const dispatch = useDispatch()
+
+  function handleLogout() {
+    dispatch(startLogout())
+    dispatch(clearJournalState())
+  }
+
   return (
-    <AppBar
-      sx={{
-        width: { md: `calc(100% - ${drawerWidth}px)` },
-        ml: { md: `${drawerWidth}px` },
-      }}
-      position="fixed"
-    >
+    <AppBar position="fixed" open={isDrawerOpen}>
       <Toolbar>
         <IconButton
-          size="large"
-          edge="start"
           color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2, display: { md: 'none' } }}
+          aria-label="open drawer"
+          onClick={toggleDrawer}
+          edge="start"
+          sx={{ mr: 2, ...(isDrawerOpen && { display: 'none' }) }}
         >
-          <Menu />
+          <MenuIcon />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           JournalApp
         </Typography>
-        <IconButton color="inherit">
-          <LogoutOutlined />
+        <IconButton color="inherit" onClick={handleLogout}>
+          <LogoutOutlinedIcon />
         </IconButton>
       </Toolbar>
     </AppBar>
@@ -33,7 +46,8 @@ function Navbar({ drawerWidth }) {
 }
 
 Navbar.propTypes = {
-  drawerWidth: PropTypes.number.isRequired,
+  isDrawerOpen: PropTypes.bool.isRequired,
+  toggleDrawer: PropTypes.func.isRequired,
 }
 
 export default Navbar

@@ -1,51 +1,182 @@
+import { useEffect, useMemo } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import { AuthLayout } from '@Auth/layout'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  Alert,
+  Button,
+  Link,
+  Stack,
+  TextField,
+  Typography,
+} from '@mui/material'
 import { Google } from '@mui/icons-material'
-import { Button, Link, Stack, TextField, Typography } from '@mui/material'
+import { useForm } from '@Hooks'
+import { AuthLayout } from '@Auth/layout'
+import { PasswordField, PasswordStrength } from '@Auth/components'
+import { isValidEmail, isValidPassword } from '@Auth/utils'
+import { startCreatingUserWithEmailAndPassword } from '@Store/auth'
+
+import './RegisterPage.css'
+
+const initialFormData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+}
+
+const initialFormValidations = {
+  firstName: {
+    validator: (value) => value.trim().length > 0,
+    message: 'First name is required',
+  },
+  lastName: {
+    validator: (value) => value.trim().length > 0,
+    message: 'Last name is required',
+  },
+  email: {
+    validator: isValidEmail,
+    message: 'Invalid email address.',
+  },
+  password: {
+    validator: isValidPassword,
+    message: 'Invalid password',
+  },
+  confirmPassword: {
+    validator: null,
+    message: 'Passwords must match',
+  },
+}
 
 function RegisterPage() {
+  const dispatch = useDispatch()
+
+  const { status, errorMessage } = useSelector((state) => state.auth)
+
+  const isCheckingAuthentication = useMemo(
+    () => status === 'checking',
+    [status]
+  )
+
+  const {
+    formState,
+    formErrors,
+    handleInputChange,
+    handleInputValidation,
+    validate,
+    setFormValidation,
+    validateForm,
+  } = useForm(initialFormData, initialFormValidations)
+
+  useEffect(() => {
+    setFormValidation('confirmPassword', {
+      validator: (value) => formState.password === value,
+    })
+  }, [formState.password, setFormValidation])
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    if (!validateForm()) return
+
+    dispatch(startCreatingUserWithEmailAndPassword(formState))
+  }
+
   return (
     <AuthLayout title="Sign up">
       <Stack spacing={2}>
-        <form>
+        <form onSubmit={handleSubmit} noValidate>
           <Stack spacing={2}>
             <Stack spacing={2} direction={{ xs: 'column', sm: 'row' }}>
               <TextField
-                autoComplete="given-name"
+                type="text"
+                id="firstName"
                 name="firstName"
+                label="First Name"
+                autoComplete="given-name"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
                 autoFocus
+                value={formState.firstName}
+                onChange={handleInputChange}
+                onBlur={handleInputValidation}
+                error={formErrors.firstName !== null}
+                helperText={formErrors.firstName}
               />
               <TextField
+                type="text"
+                id="lastName"
+                name="lastName"
+                label="Last Name"
+                autoComplete="family-name"
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="family-name"
+                value={formState.lastName}
+                onChange={handleInputChange}
+                onBlur={handleInputValidation}
+                error={formErrors.lastName !== null}
+                helperText={formErrors.lastName}
               />
             </Stack>
             <TextField
-              required
-              fullWidth
+              type="email"
               id="email"
-              label="Email Address"
               name="email"
+              label="Email Address"
               autoComplete="email"
-            />
-            <TextField
               required
               fullWidth
+              value={formState.email}
+              onChange={handleInputChange}
+              onBlur={handleInputValidation}
+              error={formErrors.email !== null}
+              helperText={formErrors.email}
+            />
+            <PasswordField
+              id="password"
               name="password"
               label="Password"
-              type="password"
-              id="password"
               autoComplete="new-password"
+              required
+              fullWidth
+              value={formState.password}
+              onChange={handleInputChange}
+              onBlur={(e) => {
+                handleInputValidation(e)
+                validate('confirmPassword', formState.confirmPassword)
+              }}
+              error={formErrors.password !== null}
+              helperText={formErrors.password}
             />
-            <Button variant="contained" size="large" type="submit">
+            <PasswordStrength
+              id="password-strength"
+              password={formState.password}
+            />
+            <PasswordField
+              id="confirmPassword"
+              name="confirmPassword"
+              label="Confirm password"
+              autoComplete="off"
+              required
+              fullWidth
+              value={formState.confirmPassword}
+              onChange={handleInputChange}
+              onBlur={handleInputValidation}
+              error={formErrors.confirmPassword !== null}
+              helperText={formErrors.confirmPassword}
+            />
+            <Alert
+              severity="error"
+              sx={{ display: !errorMessage ? 'none' : '' }}
+            >
+              {errorMessage}
+            </Alert>
+            <Button
+              variant="contained"
+              size="large"
+              type="submit"
+              disabled={isCheckingAuthentication}
+            >
               Sign up
             </Button>
           </Stack>

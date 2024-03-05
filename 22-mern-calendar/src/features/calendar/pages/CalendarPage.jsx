@@ -1,6 +1,10 @@
+import { CalendarNavbar } from '@Calendar/components'
+
 function CalendarPage() {
   return (
-    <div>CalendarPage</div>
+    <>
+      <CalendarNavbar />
+    </>
   )
 }
 

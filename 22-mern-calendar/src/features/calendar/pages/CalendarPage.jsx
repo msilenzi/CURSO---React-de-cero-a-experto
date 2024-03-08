@@ -5,7 +5,11 @@ import addHours from 'date-fns/addHours'
 
 import Container from 'react-bootstrap/Container'
 
-import { CalendarEventBox, CalendarNavbar } from '@Calendar/components'
+import {
+  CalendarEventBox,
+  CalendarModal,
+  CalendarNavbar,
+} from '@Calendar/components'
 import { calendarLocalizer } from '@Calendar/utils'
 import { useState } from 'react'
 
@@ -55,26 +59,29 @@ function CalendarPage() {
   }
 
   return (
-    <div className="d-flex flex-column" style={{ minHeight: '100svh' }}>
-      <CalendarNavbar />
-      <Container className="d-flex flex-column flex-grow-1 py-3">
-        <Calendar
-          className="flex-grow-1"
-          localizer={calendarLocalizer}
-          events={events}
-          startAccessor="start"
-          endAccessor="end"
-          defaultView={lastView}
-          eventPropGetter={eventStyleGetter}
-          components={{
-            event: CalendarEventBox,
-          }}
-          onDoubleClickEvent={onDoubleClick}
-          onSelectEvent={onSelect}
-          onView={onViewChange}
-        />
-      </Container>
-    </div>
+    <>
+      <div className="d-flex flex-column" style={{ minHeight: '100svh' }}>
+        <CalendarNavbar />
+        <Container className="d-flex flex-column flex-grow-1 py-3">
+          <Calendar
+            className="flex-grow-1"
+            localizer={calendarLocalizer}
+            events={events}
+            startAccessor="start"
+            endAccessor="end"
+            defaultView={lastView}
+            eventPropGetter={eventStyleGetter}
+            components={{
+              event: CalendarEventBox,
+            }}
+            onDoubleClickEvent={onDoubleClick}
+            onSelectEvent={onSelect}
+            onView={onViewChange}
+          />
+        </Container>
+      </div>
+      <CalendarModal show={true} onHide={() => console.log('onHide')} />
+    </>
   )
 }
 

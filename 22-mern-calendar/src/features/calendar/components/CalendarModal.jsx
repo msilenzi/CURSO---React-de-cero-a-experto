@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import { addHours } from 'date-fns'
+import { useMemo, useState } from 'react'
+import { addHours, differenceInSeconds } from 'date-fns'
+import Swal from 'sweetalert2'
+
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
@@ -17,6 +19,13 @@ function CalendarModal() {
     end: addHours(new Date(), 2),
   })
 
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+  const titleClass = useMemo(() => {
+    if (!formSubmitted) return ''
+    return formValues.title.trim().length === 0 ? 'is-invalid' : ''
+  }, [formSubmitted, formValues.title])
+
   function onInputChange(e) {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
   }
@@ -27,7 +36,23 @@ function CalendarModal() {
 
   function onSubmit(e) {
     e.preventDefault()
-    console.log('submit')
+    setFormSubmitted(true)
+
+    const datesDiffSec = differenceInSeconds(formValues.end, formValues.start)
+    if (isNaN(datesDiffSec) || datesDiffSec <= 0) {
+      Swal.fire('Invalid dates', 'Check the dates', 'error')
+      return
+    }
+
+    setFormValues({
+      title: formValues.title.trim(),
+      notes: formValues.notes.trim(),
+    })
+
+    if (formValues.title.trim().length === 0) {
+      Swal.fire('Title is mandatory', 'Please add a title', 'error')
+      return
+    }
   }
 
   return (
@@ -38,7 +63,7 @@ function CalendarModal() {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} noValidate>
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             New event
@@ -80,6 +105,7 @@ function CalendarModal() {
             <Form.Label>Title</Form.Label>
             <Form.Control
               type="text"
+              className={titleClass}
               placeholder="Event Title"
               name="title"
               value={formValues.title}

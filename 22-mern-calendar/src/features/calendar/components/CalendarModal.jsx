@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { addHours } from 'date-fns'
 import Button from 'react-bootstrap/Button'
@@ -8,11 +7,9 @@ import Modal from 'react-bootstrap/Modal'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-function tempFunc() {
-  console.log('onClose')
-}
+function CalendarModal() {
+  const [isOpen, setIsOpen] = useState(true)
 
-function CalendarModal({ show = true, onHide = tempFunc }) {
   const [formValues, setFormValues] = useState({
     title: 'title',
     notes: 'note',
@@ -28,20 +25,27 @@ function CalendarModal({ show = true, onHide = tempFunc }) {
     setFormValues({ ...formValues, [name]: value })
   }
 
+  function onSubmit(e) {
+    e.preventDefault()
+    console.log('submit')
+  }
+
   return (
     <Modal
-      show={show}
-      onHide={onHide}
+      show={isOpen}
+      onHide={() => setIsOpen(false)}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">New event</Modal.Title>
-      </Modal.Header>
+      <Form onSubmit={onSubmit}>
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            New event
+          </Modal.Title>
+        </Modal.Header>
 
-      <Modal.Body>
-        <Form>
+        <Modal.Body>
           <Form.Group className="mb-3">
             <Form.Label>Start Date and Time</Form.Label>
             <div>
@@ -96,21 +100,16 @@ function CalendarModal({ show = true, onHide = tempFunc }) {
             />
             <Form.Text className="text-muted">Additional information</Form.Text>
           </Form.Group>
-        </Form>
-      </Modal.Body>
+        </Modal.Body>
 
-      <Modal.Footer>
-        <Button type="submit" variant="primary" className="btn-block">
-          Save
-        </Button>
-      </Modal.Footer>
+        <Modal.Footer>
+          <Button type="submit" variant="primary" className="btn-block">
+            Save
+          </Button>
+        </Modal.Footer>
+      </Form>
     </Modal>
   )
-}
-
-CalendarModal.propTypes = {
-  show: PropTypes.bool.isRequired,
-  onHide: PropTypes.func.isRequired,
 }
 
 export default CalendarModal

@@ -80,7 +80,7 @@ function CalendarPage() {
           />
         </Container>
       </div>
-      <CalendarModal show={true} onHide={() => console.log('onHide')} />
+      <CalendarModal />
     </>
   )
 }

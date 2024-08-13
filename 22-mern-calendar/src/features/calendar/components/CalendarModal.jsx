@@ -9,8 +9,10 @@ import Modal from 'react-bootstrap/Modal'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
+import { useUiStore } from 'hooks'
+
 function CalendarModal() {
-  const [isOpen, setIsOpen] = useState(true)
+  const { isDateModalOpen, closeDateModal } = useUiStore()
 
   const [formValues, setFormValues] = useState({
     title: 'title',
@@ -57,8 +59,8 @@ function CalendarModal() {
 
   return (
     <Modal
-      show={isOpen}
-      onHide={() => setIsOpen(false)}
+      show={isDateModalOpen}
+      onHide={closeDateModal}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered

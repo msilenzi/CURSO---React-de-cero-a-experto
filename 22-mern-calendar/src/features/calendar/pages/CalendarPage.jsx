@@ -21,7 +21,7 @@ function CalendarPage() {
     localStorage.getItem('lastView') ?? 'month'
   )
 
-  function eventStyleGetter(event, start, end, isSelected) {
+  function eventStyleGetter() {
     const style = {
       backgroundColor: 'var(--bs-primary)',
       borderRadius: '0',
@@ -34,7 +34,7 @@ function CalendarPage() {
     }
   }
 
-  function onDoubleClick(e) {
+  function onDoubleClick() {
     openDateModal()
   }
 

@@ -3,8 +3,6 @@ import { useState } from 'react'
 import { Calendar } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
-import addHours from 'date-fns/addHours'
-
 import Container from 'react-bootstrap/Container'
 
 import {
@@ -13,23 +11,10 @@ import {
   CalendarNavbar,
 } from '@Calendar/components'
 import { calendarLocalizer } from '@Calendar/utils'
-import { useUiStore } from 'hooks'
-
-const events = [
-  {
-    title: 'Cumpleaños del Jefe',
-    notes: 'Hay que comprar el pastel',
-    start: new Date(),
-    end: addHours(new Date(), 2),
-    bgColor: '#1f1f1f',
-    user: {
-      id: '1234',
-      name: 'Manuel',
-    },
-  },
-]
+import { useUiStore, useCalendarStore } from 'hooks'
 
 function CalendarPage() {
+  const { events, setActiveEvent } = useCalendarStore()
   const { openDateModal } = useUiStore()
 
   const [lastView, setLastView] = useState(
@@ -54,7 +39,7 @@ function CalendarPage() {
   }
 
   function onSelect(e) {
-    console.log('onSelect', e)
+    setActiveEvent(e)
   }
 
   function onViewChange(e) {

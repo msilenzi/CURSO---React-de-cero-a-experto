@@ -12,7 +12,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { useCalendarStore, useUiStore } from 'hooks'
 
 function CalendarModal() {
-  const { activeEvent } = useCalendarStore()
+  const { activeEvent, startSavingEvent } = useCalendarStore()
   const { isDateModalOpen, closeDateModal } = useUiStore()
 
   const [formValues, setFormValues] = useState({
@@ -42,7 +42,7 @@ function CalendarModal() {
     setFormValues({ ...formValues, [name]: value })
   }
 
-  function onSubmit(e) {
+  async function onSubmit(e) {
     e.preventDefault()
     setFormSubmitted(true)
 
@@ -52,15 +52,13 @@ function CalendarModal() {
       return
     }
 
-    setFormValues({
-      title: formValues.title.trim(),
-      notes: formValues.notes.trim(),
-    })
-
     if (formValues.title.trim().length === 0) {
       Swal.fire('Title is mandatory', 'Please add a title', 'error')
       return
     }
+
+    await startSavingEvent(formValues)
+    closeDateModal()
   }
 
   return (

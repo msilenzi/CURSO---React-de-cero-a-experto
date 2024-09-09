@@ -10,6 +10,7 @@ import {
   CalendarModal,
   CalendarNavbar,
   FabAddNewEvent,
+  FabDeleteEvent,
 } from '@Calendar/components'
 import { calendarLocalizer } from '@Calendar/utils'
 import { useUiStore, useCalendarStore } from 'hooks'
@@ -72,6 +73,7 @@ function CalendarPage() {
       </div>
       <CalendarModal />
       <FabAddNewEvent />
+      <FabDeleteEvent />
     </>
   )
 }

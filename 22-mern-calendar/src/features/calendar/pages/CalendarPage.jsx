@@ -9,6 +9,7 @@ import {
   CalendarEventBox,
   CalendarModal,
   CalendarNavbar,
+  FabAddNewEvent,
 } from '@Calendar/components'
 import { calendarLocalizer } from '@Calendar/utils'
 import { useUiStore, useCalendarStore } from 'hooks'
@@ -70,6 +71,7 @@ function CalendarPage() {
         </Container>
       </div>
       <CalendarModal />
+      <FabAddNewEvent />
     </>
   )
 }

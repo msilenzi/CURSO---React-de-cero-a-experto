@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "baseUrl": "src",
+    "paths": {
+      "@Auth": ["features/auth/index"],
+      "@Auth/*": ["features/auth/*"],
+
+      "@Calendar": ["features/calendar/index"],
+      "@Calendar/*": ["features/calendar/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "public"]
+}

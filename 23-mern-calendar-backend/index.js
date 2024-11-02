@@ -10,12 +10,7 @@ const app = express()
 app.use(express.static('public'))
 
 // Rutas
-// app.get('/', (req, res) => {
-//   console.log('GET /')
-//   return res.json({
-//     ok: true,
-//   })
-// })
+app.use('/api/v1/auth', require('./src/auth/auth.routes'))
 
 // Escuchar peticiones
 app.listen(process.env.PORT, () => {

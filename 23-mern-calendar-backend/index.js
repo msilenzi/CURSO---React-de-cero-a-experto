@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const { dbConnection } = require('./src/configs/db.config')
 require('dotenv').config()
 
@@ -9,6 +10,9 @@ dbConnection()
 
 //
 // Middlewares
+
+// CORS
+app.use(cors())
 
 // Directorio público
 //   `use()` permite definir un middleware. Un middleware es una función que

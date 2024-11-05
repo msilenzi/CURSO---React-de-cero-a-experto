@@ -1,6 +1,7 @@
 const { response } = require('express')
 const bcrypt = require('bcryptjs')
 const User = require('../models/user.model')
+const { generateJwt } = require('../helpers/jwt')
 
 async function signup(req, res = response) {
   const userWithSameEmail = await User.findOne({ email: req.body.email })
@@ -30,18 +31,58 @@ async function signup(req, res = response) {
     })
   }
 
+  // TODO: Generar JWT
+  const token = await generateJwt(newUser.id, newUser.name)
+
   return res.status(201).json({
     ok: true,
     payload: {
       id: newUser.id,
       name: newUser.name,
+      token,
     },
   })
 }
 
-function login(req, res = response) {
+async function login(req, res = response) {
   const { email, password } = req.body
-  return res.json({ ok: true, action: 'login', payload: req.body })
+
+  try {
+    const userWithSameEmail = await User.findOne({ email })
+    if (!userWithSameEmail) {
+      return res
+        .status(400)
+        .json({ ok: false, msg: 'No existe un usuario con ese correo' })
+    }
+
+    const isValidPassword = bcrypt.compareSync(
+      password,
+      userWithSameEmail.password
+    )
+    if (!isValidPassword) {
+      return res.status(400).json({ ok: false, msg: 'Contraseña incorrecta' })
+    }
+
+    // TODO: Generar JWT
+    const token = await generateJwt(
+      userWithSameEmail.id,
+      userWithSameEmail.name
+    )
+
+    return res.json({
+      ok: true,
+      payload: {
+        uid: userWithSameEmail.id,
+        name: userWithSameEmail.name,
+        token,
+      },
+    })
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      msg: 'Ocurrió un error al iniciar sesión',
+    })
+  }
 }
 
 function refreshToken(req, res = response) {

@@ -87,7 +87,7 @@ async function login(req, res = response) {
 
 async function refreshToken(req, res = response) {
   const token = await generateJwt(req.id, req.name)
-  return res.status(200).json({ ok: true, payload: { token } })
+  return res.status(200).json({ ok: true, payload: token })
 }
 
 module.exports = { signup, login, refreshToken }

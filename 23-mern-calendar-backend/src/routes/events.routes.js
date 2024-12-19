@@ -12,7 +12,7 @@ router.get('/', eventsController.findAll)
 
 router.post('/', createValidation, validateFields, eventsController.create)
 
-router.put('/:id', eventsController.update)
+router.put('/:id', createValidation, validateFields, eventsController.update)
 
 router.delete('/:id', eventsController.remove)
 

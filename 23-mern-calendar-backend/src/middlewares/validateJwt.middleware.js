@@ -13,8 +13,7 @@ function validateJwt(req, res = response, next) {
 
   try {
     const { id, name } = jwt.verify(token, process.env.JWT_SECRET)
-    req.id = id
-    req.name = name
+    req.user = { id, name }
   } catch (error) {
     return res.status(401).json({
       ok: false,

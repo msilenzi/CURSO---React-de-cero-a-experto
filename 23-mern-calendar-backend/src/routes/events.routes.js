@@ -2,13 +2,15 @@
 
 const router = require('express').Router()
 const eventsController = require('../controllers/events.controller')
+const { createValidation } = require('../validations/event.validations')
 const { validateJwt } = require('../middlewares/validateJwt.middleware')
+const validateFields = require('../middlewares/validateFields.middleware')
 
 router.use(validateJwt)
 
 router.get('/', eventsController.findAll)
 
-router.post('/', eventsController.create)
+router.post('/', createValidation, validateFields, eventsController.create)
 
 router.put('/:id', eventsController.update)
 

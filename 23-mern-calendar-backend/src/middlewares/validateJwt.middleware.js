@@ -12,8 +12,8 @@ function validateJwt(req, res = response, next) {
   }
 
   try {
-    const { uid, name } = jwt.verify(token, process.env.JWT_SECRET)
-    req.uid = uid
+    const { id, name } = jwt.verify(token, process.env.JWT_SECRET)
+    req.id = id
     req.name = name
   } catch (error) {
     return res.status(401).json({

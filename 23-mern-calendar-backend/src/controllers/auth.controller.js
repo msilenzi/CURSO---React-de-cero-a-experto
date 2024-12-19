@@ -72,7 +72,7 @@ async function login(req, res = response) {
     return res.json({
       ok: true,
       payload: {
-        uid: userWithSameEmail.id,
+        id: userWithSameEmail.id,
         name: userWithSameEmail.name,
         token,
       },
@@ -86,7 +86,7 @@ async function login(req, res = response) {
 }
 
 async function refreshToken(req, res = response) {
-  const token = await generateJwt(req.uid, req.name)
+  const token = await generateJwt(req.id, req.name)
   return res.status(200).json({ ok: true, payload: { token } })
 }
 

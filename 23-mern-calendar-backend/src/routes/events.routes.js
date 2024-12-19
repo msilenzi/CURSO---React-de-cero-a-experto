@@ -12,6 +12,6 @@ router.post('/', eventsController.create)
 
 router.put('/:id', eventsController.update)
 
-router.delete('/:id', eventsController.delete)
+router.delete('/:id', eventsController.remove)
 
 module.exports = router

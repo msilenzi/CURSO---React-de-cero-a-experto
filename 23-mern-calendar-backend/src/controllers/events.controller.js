@@ -40,5 +40,5 @@ module.exports = {
   findAll,
   create,
   update,
-  delete: remove,
+  remove,
 }

@@ -1,0 +1,8 @@
+services:
+  mongoDB:
+    image: mongo:latest
+    container_name: mern-calendar__mongo
+    environment:
+      MONGODB_DATABASE: 'mern-calendar'
+    ports:
+      - 27017:27017

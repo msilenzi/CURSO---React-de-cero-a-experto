@@ -13,79 +13,90 @@ async function findAll(req, res = response) {
 
 async function create(req, res = response) {
   const event = new Event(req.body)
-  event.user = req.id
+  event.user = req.user.id
 
   try {
     const savedEvent = await event.save()
-    res.json({
+    return res.json({
       ok: true,
       payload: savedEvent,
     })
   } catch (error) {
     console.log(error)
-    res.status(500).json({
+    return res.status(500).json({
       ok: false,
-      msg: 'No se pudo crear el evento',
+      msg: 'Ocurrió un error al crear el evento',
     })
   }
 }
 
 async function update(req, res = response) {
-  const eventId = req.params.id
-  const uid = req.user.id
+  const event = await _findEventByQueryId(req, res)
+  if (!event) return
 
-  if (!isValidObjectId(eventId)) {
+  const newEvent = { ...req.body, user: req.user.id }
+  const updatedEvent = await Event.findByIdAndUpdate(event.id, newEvent, {
+    new: true,
+  })
+  return res.json({
+    ok: true,
+    payload: updatedEvent,
+  })
+}
+
+async function remove(req, res = response) {
+  const event = await _findEventByQueryId(req, res)
+  if (!event) return
+
+  try {
+    await Event.findByIdAndDelete(req.params.id)
+    return res.json({
+      ok: true,
+      payload: null,
+    })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      ok: false,
+      msg: 'Error al eliminar el evento',
+    })
+  }
+}
+
+async function _findEventByQueryId(req, res) {
+  if (!isValidObjectId(req.params.id)) {
     res.status(400).json({
       ok: false,
-      msg: 'id inválido',
+      msg: 'ID inválido',
     })
+    return null
   }
 
   try {
-    const event = await Event.findById(eventId)
+    const event = await Event.findById(req.params.id)
     if (!event) {
       res.status(404).json({
         ok: false,
         msg: 'El evento no existe',
       })
+      return null
     }
-
     if (event.user.toString() !== req.user.id) {
-      return res.status(401).json({
+      res.status(401).json({
         ok: false,
-        msg: 'No puedes editar este evento',
+        msg: 'No puedes acceder a este evento',
       })
+      return null
     }
-
-    const newEvent = {
-      ...req.body,
-      user: req.user.id,
-    }
-
-    const updatedEvent = await Event.findByIdAndUpdate(event.id, newEvent, {
-      new: true,
-    })
-
-    res.json({
-      ok: true,
-      payload: updatedEvent,
-    })
+    return event
   } catch (error) {
     console.log(error)
     res.status(500).json({
       ok: false,
-      msg: 'No se pudo actualizar el evento',
+      msg: 'Error al acceder al evento',
     })
+    return null
   }
-}
-
-function remove(req, res = response) {
-  return res.json({
-    ok: true,
-    payload: {
-      events: 'delete',
-    },
-  })
 }
 
 module.exports = {

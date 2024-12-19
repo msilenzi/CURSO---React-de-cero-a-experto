@@ -86,7 +86,7 @@ async function login(req, res = response) {
 }
 
 async function refreshToken(req, res = response) {
-  const token = await generateJwt(req.id, req.name)
+  const token = await generateJwt(req.user.id, req.user.name)
   return res.status(200).json({ ok: true, payload: token })
 }
 

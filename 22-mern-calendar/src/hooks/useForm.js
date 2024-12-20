@@ -25,7 +25,7 @@ function useForm(initialFormData, initialFormValidations) {
 
   function validate(field, value) {
     const { validator, message } = formValidations[field]
-    const isValid = validator(value)
+    const isValid = validator(value, formState)
     setFormErrors((prevFormErrors) => ({
       ...prevFormErrors,
       [field]: isValid ? null : message,

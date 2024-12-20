@@ -1,5 +1,5 @@
-import { Fab } from 'components'
-import { useCalendarStore } from 'hooks'
+import { Fab } from '@Components'
+import { useCalendarStore } from '@Hooks'
 
 function FabDeleteEvent() {
   const { activeEvent, startDeletingEvent } = useCalendarStore()

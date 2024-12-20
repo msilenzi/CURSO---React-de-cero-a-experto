@@ -3,6 +3,20 @@
     "jsx": "react",
     "baseUrl": "src",
     "paths": {
+      "@Components": ["components/index"],
+      "@Components/*": ["components/*"],
+
+      "@Hooks": ["hooks/index"],
+      "@Hooks/*": ["hooks/*"],
+
+      "@Router": ["router/index"],
+      "@Router/*": ["router/*"],
+
+      "@Store": ["store/index"],
+      "@Store/*": ["store/*"],
+
+      // Features:
+
       "@Auth": ["features/auth/index"],
       "@Auth/*": ["features/auth/*"],
 

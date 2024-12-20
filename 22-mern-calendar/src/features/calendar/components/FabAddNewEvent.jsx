@@ -1,6 +1,6 @@
+import { useCalendarStore, useUiStore } from '@Hooks'
 import { Fab } from 'components'
 import { addHours } from 'date-fns'
-import { useCalendarStore, useUiStore } from 'hooks'
 
 function FabAddNewEvent() {
   const { openDateModal } = useUiStore()

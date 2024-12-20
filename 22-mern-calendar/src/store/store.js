@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { uiSlice } from './ui/uiSlice'
-import { calendarSlice } from './calendar/calendarSlice'
 import { authSlice } from './auth/authSlice'
+import { calendarSlice } from './calendar/calendarSlice'
+import { uiSlice } from './ui/uiSlice'
 
 export const store = configureStore({
   reducer: {

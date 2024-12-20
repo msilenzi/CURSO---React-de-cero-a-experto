@@ -2,8 +2,8 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { LoginPage } from '@Auth'
 import { CalendarPage } from '@Calendar'
 
-// const authStatus = 'not-authenticated'
-const authStatus = 'authenticated'
+const authStatus = 'not-authenticated'
+// const authStatus = 'authenticated'
 
 function AppRouter() {
   return (

@@ -8,8 +8,7 @@ import Modal from 'react-bootstrap/Modal'
 
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-
-import { useCalendarStore, useUiStore } from 'hooks'
+import { useCalendarStore, useUiStore } from '@Hooks'
 
 function CalendarModal() {
   const { activeEvent, startSavingEvent } = useCalendarStore()

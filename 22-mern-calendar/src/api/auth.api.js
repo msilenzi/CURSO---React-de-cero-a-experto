@@ -5,5 +5,5 @@ const authApi = axios.create({
 })
 
 export function login(credentials) {
-  return authApi.post('/', credentials)
+  return authApi.post('/login', credentials)
 }

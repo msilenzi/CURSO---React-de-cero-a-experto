@@ -6,7 +6,7 @@ import {
 } from '@Store'
 import { useDispatch, useSelector } from 'react-redux'
 
-export function useCalendarStore() {
+export default function useCalendarStore() {
   const dispatch = useDispatch()
   const { events, activeEvent } = useSelector((state) => state.calendar)
 

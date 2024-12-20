@@ -12,7 +12,7 @@ function initFormErrors(formValidations) {
   )
 }
 
-function useForm(initialFormData, initialFormValidations) {
+export default function useForm(initialFormData, initialFormValidations) {
   const [formState, setFormState] = useState(initialFormData)
   const [formErrors, setFormErrors] = useState(() =>
     initFormErrors(initialFormValidations)
@@ -78,5 +78,3 @@ function useForm(initialFormData, initialFormValidations) {
     validateForm,
   }
 }
-
-export default useForm

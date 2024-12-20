@@ -3,6 +3,9 @@
     "jsx": "react",
     "baseUrl": "src",
     "paths": {
+      "@Api": ["api/index"],
+      "@Api/*": ["api/*"],
+
       "@Components": ["components/index"],
       "@Components/*": ["components/*"],
 

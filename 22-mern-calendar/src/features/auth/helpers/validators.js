@@ -1,5 +1,5 @@
 export function isValidPassword(password) {
-  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(password)
+  return password.length >= 6
 }
 
 export function isValidEmail(email) {

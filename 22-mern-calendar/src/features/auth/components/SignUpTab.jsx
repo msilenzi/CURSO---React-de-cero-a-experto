@@ -22,8 +22,7 @@ const initialSignUpValidations = {
   },
   password: {
     validator: isValidPassword,
-    message:
-      'Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, and one number.',
+    message: 'Password must be at least 8 characters long',
   },
   confirmPassword: {
     validator: (value, state) => value === state.password,

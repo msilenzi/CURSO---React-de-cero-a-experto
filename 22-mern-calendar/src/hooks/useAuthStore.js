@@ -15,6 +15,11 @@ export default function useAuthStore() {
     _handleAuth(() => register(user))
   }
 
+  function logout() {
+    localStorage.removeItem('token')
+    dispatch(onLogout(null))
+  }
+
   async function _handleAuth(authRequest) {
     dispatch(onChecking())
 
@@ -38,7 +43,7 @@ export default function useAuthStore() {
       localStorage.setItem('token', data.payload.token)
       dispatch(onLogin({ id: data.payload.id, name: data.payload.name }))
     } catch (error) {
-      dispatch(onLogout())
+      dispatch(onLogout(null))
       localStorage.removeItem('token')
     }
   }, [dispatch])
@@ -49,6 +54,7 @@ export default function useAuthStore() {
     errorMessage,
     startLogin,
     startRegister,
+    logout,
     checkToken,
   }
 }

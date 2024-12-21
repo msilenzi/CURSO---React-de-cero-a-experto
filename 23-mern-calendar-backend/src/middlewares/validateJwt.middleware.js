@@ -7,7 +7,7 @@ function validateJwt(req, res = response, next) {
   if (!token) {
     return res.status(401).json({
       ok: false,
-      msg: 'El token es obligatorio',
+      msg: 'The token is required',
     })
   }
 
@@ -17,7 +17,7 @@ function validateJwt(req, res = response, next) {
   } catch (error) {
     return res.status(401).json({
       ok: false,
-      msg: 'Token inválido',
+      msg: 'Invalid token',
     })
   }
 

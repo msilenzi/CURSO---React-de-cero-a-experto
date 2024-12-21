@@ -1,6 +1,6 @@
 const { body } = require('express-validator')
 
-const emailValidation = body('email', 'El email es obligatorio')
+const emailValidation = body('email', 'The email is required')
   .trim()
   .isEmail()
   .escape()
@@ -10,7 +10,7 @@ const signupValidation = [
   emailValidation,
   body(
     'password',
-    'La contraseña es obligatoria y debe tener al menos 6 caracteres'
+    'The password is required and must have at least 6 characters'
   )
     .trim()
     .isLength({ min: 6 }),
@@ -18,7 +18,7 @@ const signupValidation = [
 
 const loginValidation = [
   emailValidation,
-  body('password', 'La contraseña es obligatoria').trim().notEmpty(),
+  body('password', 'The password is required').trim().notEmpty(),
 ]
 
 module.exports = { signupValidation, loginValidation }

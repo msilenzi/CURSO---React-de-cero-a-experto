@@ -6,7 +6,7 @@ async function dbConnection() {
     console.log('DB online')
   } catch (error) {
     console.log(error)
-    throw new Error('Error al inicializar la base de datos')
+    throw new Error('Error initializing the database')
   }
 }
 

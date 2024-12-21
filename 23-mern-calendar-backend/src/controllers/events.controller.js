@@ -25,7 +25,7 @@ async function create(req, res = response) {
     console.log(error)
     return res.status(500).json({
       ok: false,
-      msg: 'Ocurrió un error al crear el evento',
+      msg: 'An error occurred while creating the event',
     })
   }
 }
@@ -58,7 +58,7 @@ async function remove(req, res = response) {
     console.log(error)
     return res.status(500).json({
       ok: false,
-      msg: 'Error al eliminar el evento',
+      msg: 'Error deleting the event',
     })
   }
 }
@@ -67,7 +67,7 @@ async function _findEventByQueryId(req, res) {
   if (!isValidObjectId(req.params.id)) {
     res.status(400).json({
       ok: false,
-      msg: 'ID inválido',
+      msg: 'Invalid ID',
     })
     return null
   }
@@ -77,14 +77,14 @@ async function _findEventByQueryId(req, res) {
     if (!event) {
       res.status(404).json({
         ok: false,
-        msg: 'El evento no existe',
+        msg: 'The event does not exist',
       })
       return null
     }
     if (event.user.toString() !== req.user.id) {
       res.status(401).json({
         ok: false,
-        msg: 'No puedes acceder a este evento',
+        msg: 'You cannot access this event',
       })
       return null
     }
@@ -93,7 +93,7 @@ async function _findEventByQueryId(req, res) {
     console.log(error)
     res.status(500).json({
       ok: false,
-      msg: 'Error al acceder al evento',
+      msg: 'Error accessing the event',
     })
     return null
   }

@@ -8,7 +8,7 @@ function generateJwt(id, name) {
       process.env.JWT_SECRET,
       { expiresIn: '2h' },
       (err, token) => {
-        if (err) reject('Ocurrió un problema al generar el token')
+        if (err) reject('An issue occurred while generating the token')
         resolve(token)
       }
     )

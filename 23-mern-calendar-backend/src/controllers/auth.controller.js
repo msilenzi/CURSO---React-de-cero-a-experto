@@ -8,7 +8,7 @@ async function signup(req, res = response) {
   if (userWithSameEmail) {
     return res
       .status(400)
-      .json({ ok: false, msg: 'Ya existe un usuario con ese correo' })
+      .json({ ok: false, msg: 'A user with this email already exists' })
   }
 
   const newUser = new User(req.body)
@@ -27,7 +27,7 @@ async function signup(req, res = response) {
   } catch (error) {
     res.status(500).json({
       ok: false,
-      msg: 'Ocurrió un error al crear el usuario',
+      msg: 'An error occurred while creating the user',
     })
   }
 
@@ -52,7 +52,7 @@ async function login(req, res = response) {
     if (!userWithSameEmail) {
       return res
         .status(400)
-        .json({ ok: false, msg: 'No existe un usuario con ese correo' })
+        .json({ ok: false, msg: 'No user exists with this email' })
     }
 
     const isValidPassword = bcrypt.compareSync(
@@ -60,7 +60,7 @@ async function login(req, res = response) {
       userWithSameEmail.password
     )
     if (!isValidPassword) {
-      return res.status(400).json({ ok: false, msg: 'Contraseña incorrecta' })
+      return res.status(400).json({ ok: false, msg: 'Incorrect password' })
     }
 
     // TODO: Generar JWT
@@ -80,7 +80,7 @@ async function login(req, res = response) {
   } catch (error) {
     res.status(500).json({
       ok: false,
-      msg: 'Ocurrió un error al iniciar sesión',
+      msg: 'An error occurred while logging in',
     })
   }
 }

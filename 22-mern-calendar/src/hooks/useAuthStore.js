@@ -1,5 +1,6 @@
-import { login, register } from '@Api'
+import { login, refreshToken, register } from '@Api'
 import { onChecking, onLogin, onLogout } from '@Store'
+import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function useAuthStore() {
@@ -18,17 +19,29 @@ export default function useAuthStore() {
     dispatch(onChecking())
 
     try {
-      const resp = await authRequest()
-      if (resp.data.ok) {
-        localStorage.setItem('token', resp.data.payload.token)
-        dispatch(
-          onLogin({ id: resp.data.payload.id, name: resp.data.payload.name })
-        )
+      const { data } = await authRequest()
+      if (data.ok) {
+        localStorage.setItem('token', data.payload.token)
+        dispatch(onLogin({ id: data.payload.id, name: data.payload.name }))
       }
     } catch (error) {
       dispatch(onLogout(error.response.data.msg))
     }
   }
+
+  const checkToken = useCallback(async () => {
+    const token = localStorage.getItem('token')
+    if (!token) return dispatch(onLogout())
+
+    try {
+      const { data } = await refreshToken()
+      localStorage.setItem('token', data.payload.token)
+      dispatch(onLogin({ id: data.payload.id, name: data.payload.name }))
+    } catch (error) {
+      dispatch(onLogout())
+      localStorage.removeItem('token')
+    }
+  }, [dispatch])
 
   return {
     status,
@@ -36,5 +49,6 @@ export default function useAuthStore() {
     errorMessage,
     startLogin,
     startRegister,
+    checkToken,
   }
 }

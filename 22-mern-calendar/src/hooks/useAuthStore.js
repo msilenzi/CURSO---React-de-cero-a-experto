@@ -1,4 +1,4 @@
-import { login } from '@Api'
+import { login, register } from '@Api'
 import { onChecking, onLogin, onLogout } from '@Store'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -7,11 +7,18 @@ export default function useAuthStore() {
   const dispatch = useDispatch()
 
   async function startLogin(credentials) {
+    _handleAuth(() => login(credentials))
+  }
+
+  async function startRegister(user) {
+    _handleAuth(() => register(user))
+  }
+
+  async function _handleAuth(authRequest) {
     dispatch(onChecking())
 
     try {
-      const resp = await login(credentials)
-
+      const resp = await authRequest()
       if (resp.data.ok) {
         localStorage.setItem('token', resp.data.payload.token)
         dispatch(
@@ -19,8 +26,7 @@ export default function useAuthStore() {
         )
       }
     } catch (error) {
-      dispatch(onLogout('Invalid email or password'))
-      // setTimeout(() => dispatch(clearErrorMessage()), 1)
+      dispatch(onLogout(error.response.data.msg))
     }
   }
 
@@ -29,5 +35,6 @@ export default function useAuthStore() {
     user,
     errorMessage,
     startLogin,
+    startRegister,
   }
 }

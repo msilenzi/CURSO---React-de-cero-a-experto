@@ -1,8 +1,13 @@
 import { isValidEmail, isValidPassword } from '@Auth/helpers/validators'
+import { useAuthStore } from '@Hooks'
 import useForm from '@Hooks/useForm'
+import { clearErrorMessage } from '@Store'
+import { useEffect } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FormLabel from 'react-bootstrap/FormLabel'
+import { useDispatch } from 'react-redux'
+import Swal from 'sweetalert2'
 
 const initialSignUpData = {
   username: '',
@@ -40,10 +45,25 @@ function SignUpTab() {
     validate,
   } = useForm(initialSignUpData, initialSignUpValidations)
 
+  const { errorMessage, startRegister } = useAuthStore()
+  const dispatch = useDispatch()
+
   function handleSubmit(e) {
     e.preventDefault()
-    validateForm()
+    if (!validateForm()) return
+    startRegister({
+      name: formState.username,
+      email: formState.email,
+      password: formState.password,
+    })
   }
+
+  useEffect(() => {
+    if (errorMessage !== null) {
+      Swal.fire('Authentication failed', errorMessage, 'error')
+      dispatch(clearErrorMessage())
+    }
+  }, [dispatch, errorMessage])
 
   return (
     <Form onSubmit={handleSubmit}>

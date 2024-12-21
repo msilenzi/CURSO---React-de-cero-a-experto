@@ -7,3 +7,7 @@ const authApi = axios.create({
 export function login(credentials) {
   return authApi.post('/login', credentials)
 }
+
+export function register(user) {
+  return authApi.post('/signup', user)
+}
